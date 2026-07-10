@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>네이버 뉴스 키워드 대시보드</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <h1>네이버 뉴스 키워드 대시보드</h1>
+  <div class="status-row">
+    <span id="last-update" class="last-update">마지막 업데이트 확인 중...</span>
+    <button id="update-btn" class="btn btn-primary">업데이트</button>
+    <button id="settings-btn" class="btn btn-icon" title="GitHub 토큰 설정" aria-label="설정">⚙</button>
+  </div>
+</header>
+
+<section id="settings-panel" class="panel" hidden>
+  <h2>GitHub 연결 설정</h2>
+  <p class="hint">
+    "업데이트"와 "키워드 추가"는 이 저장소에 대한 <strong>Contents: Read/Write</strong>,
+    <strong>Actions: Read/Write</strong> 권한을 가진 fine-grained Personal Access Token(PAT)이 필요합니다.
+    토큰은 이 브라우저의 localStorage에만 저장되며 어디로도 전송되지 않습니다(GitHub API 호출 시에만 사용).
+  </p>
+  <label class="field">
+    GitHub Personal Access Token
+    <input type="password" id="pat-input" placeholder="github_pat_...">
+  </label>
+  <div class="field-row">
+    <label class="field">
+      Owner (자동 감지 실패 시에만 입력)
+      <input type="text" id="owner-input" placeholder="예: myusername">
+    </label>
+    <label class="field">
+      Repo (자동 감지 실패 시에만 입력)
+      <input type="text" id="repo-input" placeholder="예: naver-news-dashboard">
+    </label>
+  </div>
+  <div class="btn-row">
+    <button id="pat-save-btn" class="btn btn-primary">저장</button>
+    <button id="pat-clear-btn" class="btn btn-ghost">토큰 삭제</button>
+  </div>
+</section>
+
+<form id="add-keyword-form" class="add-keyword-form">
+  <input type="text" id="new-keyword-input" placeholder="새 키워드 추가 (예: 인공지능)" maxlength="50" required>
+  <button type="submit" class="btn btn-secondary">추가</button>
+</form>
+
+<div class="view-toggle" role="group" aria-label="보기 범위">
+  <button class="scope-btn active" data-scope="today">오늘</button>
+  <button class="scope-btn" data-scope="all">전체</button>
+</div>
+
+<main id="keyword-columns" class="keyword-columns">
+  <p class="empty-hint">불러오는 중...</p>
+</main>
+
+<div id="toast" class="toast" hidden></div>
+
+<script src="app.js"></script>
+</body>
+</html>

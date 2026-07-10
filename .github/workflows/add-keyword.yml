@@ -1,0 +1,48 @@
+name: Add Keyword
+
+on:
+  workflow_dispatch:
+    inputs:
+      keyword:
+        description: '추가할 키워드'
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: news-data-write
+  cancel-in-progress: false
+
+jobs:
+  add:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Add keyword and collect
+        run: node scripts/addKeyword.js "$KEYWORD_INPUT"
+        env:
+          KEYWORD_INPUT: ${{ github.event.inputs.keyword }}
+          NAVER_CLIENT_ID: ${{ secrets.NAVER_CLIENT_ID }}
+          NAVER_CLIENT_SECRET: ${{ secrets.NAVER_CLIENT_SECRET }}
+
+      - name: Commit data
+        env:
+          KEYWORD_INPUT: ${{ github.event.inputs.keyword }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/news.json data/keywords.json
+          if git diff --cached --quiet; then
+            echo "변경 사항 없음"
+          else
+            git commit -m "chore: add keyword ($KEYWORD_INPUT)"
+            git pull --rebase origin "${GITHUB_REF_NAME}"
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          fi
