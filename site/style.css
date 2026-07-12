@@ -342,9 +342,37 @@ body {
   margin: 0;
 }
 
-/* 삭제 아이콘·접기 아이콘 공통: 작은 원형 테두리 */
-.card-chevron,
+/* 접기/펼치기 표시: 헤더 전체가 클릭 영역이므로 별도 버튼처럼 보이지 않게 테두리 없는 삼각형만 표시 */
+.card-chevron {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.15s;
+}
+
+/* 폰트 글리프 대신 CSS로 그린 삼각형 — 정중앙에 오고 두껍게 보이도록 고정 */
+.card-chevron::before {
+  content: '';
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 6px solid var(--muted);
+  transition: border-top-color 0.15s;
+}
+
+.keyword-card-header:hover .card-chevron::before { border-top-color: var(--ink); }
+
+.keyword-card.collapsed .card-chevron { transform: rotate(-90deg); }
+
+/* 삭제 아이콘: 독립된 클릭 영역이므로 원형 테두리로 명확히 구분 */
 .keyword-delete-icon {
+  position: absolute;
+  top: var(--space-md);
+  right: var(--space-md);
   flex-shrink: 0;
   width: 26px;
   height: 26px;
@@ -353,38 +381,11 @@ body {
   justify-content: center;
   border: 1px solid var(--hairline);
   border-radius: var(--radius-full);
+  background: var(--canvas);
   color: var(--muted);
-  font-size: 14px;
-  line-height: 1;
-}
-
-.card-chevron {
-  background: var(--canvas);
-  transition: transform 0.15s, background 0.15s;
-}
-
-/* 폰트 글리프 대신 CSS로 그린 삼각형 — 원 정중앙에 오고 두껍게 보이도록 고정 */
-.card-chevron::before {
-  content: '';
-  width: 0;
-  height: 0;
-  border-left: 4px solid transparent;
-  border-right: 4px solid transparent;
-  border-top: 6px solid var(--muted);
-}
-
-.keyword-card-header:hover .card-chevron { background: var(--surface-strong); }
-
-.keyword-card.collapsed .card-chevron { transform: rotate(-90deg); }
-
-.keyword-delete-icon {
-  position: absolute;
-  top: var(--space-md);
-  right: var(--space-md);
-  background: var(--canvas);
-  border: 1px solid var(--hairline);
-  cursor: pointer;
   font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
 }
 
 .keyword-delete-icon:hover { background: var(--error); border-color: var(--error); color: var(--on-primary); }
