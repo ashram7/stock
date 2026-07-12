@@ -190,7 +190,6 @@
 
     const chevron = document.createElement('span');
     chevron.className = 'card-chevron';
-    chevron.textContent = '⌄';
     chevron.setAttribute('aria-hidden', 'true');
     header.appendChild(chevron);
 
