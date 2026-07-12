@@ -39,7 +39,12 @@
   }
 
   function getWorkerUrl() {
-    return (localStorage.getItem('workerUrl') || '').trim();
+    let url = (localStorage.getItem('workerUrl') || '').trim();
+    // https:// 없이 저장된 경우 상대경로로 해석되는 문제를 방지 (예: naver-news-search.xxx.workers.dev)
+    if (url && !/^https?:\/\//i.test(url)) {
+      url = `https://${url}`;
+    }
+    return url;
   }
 
   function getAppSecret() {
