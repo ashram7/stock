@@ -54,33 +54,52 @@ body {
 
 /* ---------- 상단 헤더 (스티키 + 글래스) ---------- */
 
+/* 헤더도 기사 영역(.feed)과 동일하게 1280px로 제한 — 전체 폭 배경이면 아래 콘텐츠보다
+   넓어 보이는 착시가 생겨서, 같은 폭의 "떠 있는" 유리 패널로 만든다. */
 .topbar {
   position: sticky;
   top: 0;
   z-index: 30;
-  margin: 0 calc(-1 * var(--space-base)) var(--space-lg);
+  max-width: 1280px;
+  margin: 0 auto var(--space-lg);
   padding: var(--space-md) var(--space-base);
-  background: rgba(255, 255, 255, 0.55);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border-bottom: 1px solid rgba(221, 221, 221, 0.6);
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.4) inset;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(2px) saturate(180%);
+  -webkit-backdrop-filter: blur(2px) saturate(180%);
+  border: 1px solid rgba(221, 221, 221, 0.6);
+  border-top: none;
+  border-radius: 0 0 var(--radius-md) var(--radius-md);
+  box-shadow: var(--shadow-card);
 }
 
 .topbar-inner {
-  max-width: 1280px;
-  margin: 0 auto;
+  display: flex;
 }
 
+/* 브랜드/검색/상태를 1번째 줄로, 오늘·전체 토글은 항상 자기 줄로 강제 줄바꿈 → 헤더는 기본적으로 2줄 구조 */
 .topbar-row {
   display: flex;
+  flex: 1;
   flex-wrap: wrap;
   align-items: center;
-  gap: var(--space-md);
+  row-gap: var(--space-sm);
+  column-gap: var(--space-md);
+}
+
+.brand {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.logo-mark {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
 }
 
 .topbar h1 {
-  flex: 0 0 auto;
   font-size: 20px;
   font-weight: 600;
   line-height: 1.2;
@@ -269,11 +288,10 @@ body {
   padding: 9px 15px;
 }
 
-/* ---------- 오늘/전체 토글 ---------- */
+/* ---------- 오늘/전체 토글 (헤더 두 번째 줄) ---------- */
 
 .view-toggle {
-  max-width: 1280px;
-  margin: 0 auto var(--space-lg);
+  flex: 0 0 100%; /* 항상 새 줄로 강제 줄바꿈 */
   display: flex;
   gap: var(--space-xs);
 }
@@ -506,11 +524,20 @@ body {
 @media (max-width: 743px) {
   body { padding: 0 var(--space-md) var(--space-xxl); }
 
-  .topbar { margin: 0 calc(-1 * var(--space-md)) var(--space-lg); padding: var(--space-sm) var(--space-md); }
+  .topbar { margin: 0 auto var(--space-lg); padding: var(--space-sm) var(--space-md); }
 
-  .topbar-row { flex-direction: column; align-items: stretch; }
+  /* 정확히 2줄로 고정: 1줄 = 로고+상태아이콘, 2줄 = 검색+오늘/전체 토글 */
+  .topbar-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    column-gap: var(--space-sm);
+    row-gap: var(--space-sm);
+  }
+
+  .brand { grid-column: 1; grid-row: 1; }
+  .status-row { grid-column: 2; grid-row: 1; justify-self: end; }
+  .add-keyword-form { grid-column: 1; grid-row: 2; max-width: none; margin: 0; }
+  .view-toggle { grid-column: 2; grid-row: 2; justify-self: end; }
 
   .field-row { flex-direction: column; gap: 0; }
-
-  .add-keyword-form { max-width: none; margin: 0; }
 }

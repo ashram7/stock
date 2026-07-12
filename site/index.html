@@ -7,13 +7,20 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=7">
+<link rel="stylesheet" href="style.css?v=8">
 </head>
 <body>
 <header class="topbar">
   <div class="topbar-inner">
     <div class="topbar-row">
-      <h1>뉴스 대시보드</h1>
+      <div class="brand">
+        <svg class="logo-mark" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <rect x="2" y="4" width="20" height="16" rx="4" fill="#ff385c"/>
+          <rect x="6" y="9" width="12" height="2" rx="1" fill="#ffffff"/>
+          <rect x="6" y="13" width="8" height="2" rx="1" fill="#ffffff"/>
+        </svg>
+        <h1>뉴스 대시보드</h1>
+      </div>
       <form id="add-keyword-form" class="add-keyword-form">
         <input type="text" id="new-keyword-input" placeholder="새 키워드 추가 (예: 인공지능)" maxlength="50" required>
         <button type="submit" class="btn btn-icon" title="키워드 추가" aria-label="키워드 추가">+</button>
@@ -22,6 +29,10 @@
         <span id="last-update" class="last-update">확인 중...</span>
         <button id="update-btn" class="btn btn-icon" title="업데이트" aria-label="업데이트">⟳</button>
         <button id="settings-btn" class="btn btn-icon" title="GitHub 토큰 설정" aria-label="설정">⚙</button>
+      </div>
+      <div class="view-toggle" role="group" aria-label="보기 범위">
+        <button class="scope-btn active" data-scope="today">오늘</button>
+        <button class="scope-btn" data-scope="all">전체</button>
       </div>
     </div>
   </div>
@@ -69,17 +80,12 @@
   </div>
 </section>
 
-<div class="view-toggle" role="group" aria-label="보기 범위">
-  <button class="scope-btn active" data-scope="today">오늘</button>
-  <button class="scope-btn" data-scope="all">전체</button>
-</div>
-
 <main id="feed" class="feed">
   <p class="empty-hint">불러오는 중...</p>
 </main>
 
 <div id="toast" class="toast" hidden></div>
 
-<script src="app.js?v=7"></script>
+<script src="app.js?v=8"></script>
 </body>
 </html>
