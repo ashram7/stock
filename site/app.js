@@ -146,13 +146,23 @@
     const li = document.createElement('li');
     li.className = `article-row${isDividerStart ? ' divider-before' : ''}`;
 
+    const top = document.createElement('div');
+    top.className = 'row-top';
+
     const link = document.createElement('a');
     link.href = article.url;
     link.target = '_blank';
     link.rel = 'noopener noreferrer';
     link.className = 'row-title';
     link.textContent = article.title; // textContent만 사용 — 외부 입력 XSS 방지
-    li.appendChild(link);
+    top.appendChild(link);
+
+    const time = document.createElement('span');
+    time.className = 'row-time';
+    time.textContent = formatTime(article.pubDate);
+    top.appendChild(time);
+
+    li.appendChild(top);
 
     if (article.description) {
       const desc = document.createElement('p');
@@ -160,11 +170,6 @@
       desc.textContent = article.description;
       li.appendChild(desc);
     }
-
-    const time = document.createElement('span');
-    time.className = 'row-time';
-    time.textContent = formatTime(article.pubDate);
-    li.appendChild(time);
 
     return li;
   }
@@ -183,15 +188,15 @@
       renderAll();
     });
 
-    const heading = document.createElement('h2');
-    heading.textContent = keyword; // textContent만 사용 — XSS 방지
-    header.appendChild(heading);
-
     const chevron = document.createElement('span');
     chevron.className = 'card-chevron';
     chevron.textContent = '⌄';
     chevron.setAttribute('aria-hidden', 'true');
     header.appendChild(chevron);
+
+    const heading = document.createElement('h2');
+    heading.textContent = keyword; // textContent만 사용 — XSS 방지
+    header.appendChild(heading);
 
     card.appendChild(header);
 
