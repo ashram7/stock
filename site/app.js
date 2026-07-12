@@ -9,8 +9,7 @@
   const state = {
     keywords: [],
     news: { articles: {}, meta: {} },
-    scope: 'today',
-    selectedKeyword: null // null = 전체
+    scope: 'today'
   };
 
   // ---------- 저장소 정보 ----------
@@ -100,14 +99,10 @@
     return d.toLocaleString('ko-KR', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
   }
 
-  // 선택된 키워드(state.selectedKeyword)와 보기 범위(state.scope)를 반영해 정렬된 기사 목록을 만든다.
-  // null(전체 탭)이면 키워드로 거르지 않는다 — 같은 기사가 여러 키워드에 매칭돼도 한 번만 나온다(데이터가 url 기준으로 이미 중복 제거되어 있음).
-  function articlesFiltered() {
-    const all = Object.values(state.news.articles || {});
-    const byKeyword = state.selectedKeyword
-      ? all.filter((a) => a.matchedKeywords.includes(state.selectedKeyword))
-      : all;
-    const scoped = state.scope === 'today' ? byKeyword.filter((a) => isToday(a.pubDate)) : byKeyword;
+  // 키워드별 기사 목록: 보기 범위(state.scope)를 반영하고 최신순으로 정렬한다.
+  function articlesForKeyword(keyword) {
+    const all = Object.values(state.news.articles || {}).filter((a) => a.matchedKeywords.includes(keyword));
+    const scoped = state.scope === 'today' ? all.filter((a) => isToday(a.pubDate)) : all;
     return scoped.sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
   }
 
@@ -115,34 +110,6 @@
     const d = new Date(pubDate);
     if (Number.isNaN(d.getTime())) return '';
     return d.toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit' });
-  }
-
-  function formatMonthHeading(monthKey) {
-    const [y, m] = monthKey.split('-');
-    return `${y}년 ${parseInt(m, 10)}월`;
-  }
-
-  function formatDayHeading(dayKey) {
-    const d = new Date(dayKey);
-    const weekday = ['일', '월', '화', '수', '목', '금', '토'][d.getDay()];
-    return `${d.getMonth() + 1}월 ${d.getDate()}일 (${weekday})`;
-  }
-
-  // 이미 pubDate 내림차순으로 정렬된 articles를 월 -> 일 단위로 묶는다.
-  // Map은 삽입 순서를 보존하므로, 정렬된 입력을 그대로 넣으면 최신 월/일이 먼저 오는 순서가 유지된다.
-  function groupByMonthDay(articles) {
-    const months = new Map();
-    for (const article of articles) {
-      const d = new Date(article.pubDate);
-      if (Number.isNaN(d.getTime())) continue; // 날짜 정보 없는 기사는 그룹핑 불가하므로 제외
-      const monthKey = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`;
-      const dayKey = `${monthKey}-${String(d.getDate()).padStart(2, '0')}`;
-      if (!months.has(monthKey)) months.set(monthKey, new Map());
-      const days = months.get(monthKey);
-      if (!days.has(dayKey)) days.set(dayKey, []);
-      days.get(dayKey).push(article);
-    }
-    return months;
   }
 
   function renderMeta() {
@@ -156,141 +123,90 @@
     el.textContent = `마지막 업데이트: ${formatDate(meta.lastUpdateAt)} (${statusLabel})`;
   }
 
-  function renderKeywordTabs() {
-    const nav = document.getElementById('keyword-tabs');
-    nav.innerHTML = '';
-
-    const allTab = document.createElement('button');
-    allTab.type = 'button';
-    allTab.className = `keyword-tab${state.selectedKeyword === null ? ' active' : ''}`;
-    allTab.textContent = '전체';
-    allTab.addEventListener('click', () => {
-      state.selectedKeyword = null;
-      renderAll();
-    });
-    nav.appendChild(allTab);
-
-    for (const { keyword } of state.keywords) {
-      const tab = document.createElement('div');
-      tab.className = `keyword-tab${state.selectedKeyword === keyword ? ' active' : ''}`;
-
-      const label = document.createElement('button');
-      label.type = 'button';
-      label.className = 'tab-label';
-      label.textContent = keyword; // textContent만 사용 — XSS 방지
-      label.addEventListener('click', () => {
-        state.selectedKeyword = keyword;
-        renderAll();
-      });
-      tab.appendChild(label);
-
-      const delBtn = document.createElement('button');
-      delBtn.type = 'button';
-      delBtn.className = 'tab-delete';
-      delBtn.textContent = '×';
-      delBtn.title = `"${keyword}" 삭제`;
-      delBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        handleDeleteKeyword(keyword);
-      });
-      tab.appendChild(delBtn);
-
-      nav.appendChild(tab);
-    }
-  }
-
-  function renderArticleCard(article) {
-    const card = document.createElement('article');
-    card.className = 'article-card';
+  // isDividerStart이면 "오늘 지난 기사" 시작 지점을 표시하는 진한 구분선을 위에 붙인다.
+  function renderArticleRow(article, isDividerStart) {
+    const li = document.createElement('li');
+    li.className = `article-row${isDividerStart ? ' divider-before' : ''}`;
 
     const link = document.createElement('a');
     link.href = article.url;
     link.target = '_blank';
     link.rel = 'noopener noreferrer';
-    link.className = 'card-title';
+    link.className = 'row-title';
     link.textContent = article.title; // textContent만 사용 — 외부 입력 XSS 방지
-    card.appendChild(link);
+    li.appendChild(link);
 
     if (article.description) {
       const desc = document.createElement('p');
-      desc.className = 'card-desc';
+      desc.className = 'row-desc';
       desc.textContent = article.description;
-      card.appendChild(desc);
+      li.appendChild(desc);
     }
-
-    const footer = document.createElement('div');
-    footer.className = 'card-footer';
 
     const time = document.createElement('span');
-    time.className = 'card-time';
+    time.className = 'row-time';
     time.textContent = formatTime(article.pubDate);
-    footer.appendChild(time);
+    li.appendChild(time);
 
-    const tags = document.createElement('div');
-    tags.className = 'card-keywords';
-    for (const kw of article.matchedKeywords) {
-      const tag = document.createElement('span');
-      tag.className = 'card-tag';
-      tag.textContent = kw;
-      tags.appendChild(tag);
-    }
-    footer.appendChild(tags);
-
-    card.appendChild(footer);
-    return card;
+    return li;
   }
 
-  function renderFeed() {
-    const container = document.getElementById('feed');
-    container.innerHTML = '';
+  function renderKeywordCard(keyword) {
+    const card = document.createElement('section');
+    card.className = 'keyword-card';
 
-    const articles = articlesFiltered();
+    const header = document.createElement('div');
+    header.className = 'keyword-card-header';
+    const heading = document.createElement('h2');
+    heading.textContent = keyword; // textContent만 사용 — XSS 방지
+    header.appendChild(heading);
+    card.appendChild(header);
+
+    const delBtn = document.createElement('button');
+    delBtn.type = 'button';
+    delBtn.className = 'keyword-delete-icon';
+    delBtn.textContent = '×';
+    delBtn.title = `"${keyword}" 삭제`;
+    delBtn.setAttribute('aria-label', `${keyword} 키워드 삭제`);
+    delBtn.addEventListener('click', () => handleDeleteKeyword(keyword));
+    card.appendChild(delBtn);
+
+    const articles = articlesForKeyword(keyword);
     if (articles.length === 0) {
       const empty = document.createElement('p');
       empty.className = 'empty-hint';
-      empty.textContent = state.keywords.length === 0
-        ? '등록된 키워드가 없습니다. 위에서 새 키워드를 추가해보세요.'
-        : (state.scope === 'today' ? '오늘 수집된 기사가 없습니다.' : '수집된 기사가 없습니다.');
-      container.appendChild(empty);
-      return;
+      empty.textContent = state.scope === 'today' ? '오늘 수집된 기사가 없습니다.' : '수집된 기사가 없습니다.';
+      card.appendChild(empty);
+      return card;
     }
 
-    const months = groupByMonthDay(articles);
-    for (const [monthKey, days] of months) {
-      const monthSection = document.createElement('section');
-      monthSection.className = 'month-group';
-
-      const monthHeading = document.createElement('h2');
-      monthHeading.className = 'month-heading';
-      monthHeading.textContent = formatMonthHeading(monthKey);
-      monthSection.appendChild(monthHeading);
-
-      for (const [dayKey, dayArticles] of days) {
-        const daySection = document.createElement('div');
-        daySection.className = 'day-group';
-
-        const dayHeading = document.createElement('h3');
-        dayHeading.className = 'day-heading';
-        dayHeading.textContent = `${formatDayHeading(dayKey)} · ${dayArticles.length}건`;
-        daySection.appendChild(dayHeading);
-
-        const grid = document.createElement('div');
-        grid.className = 'card-grid';
-        for (const article of dayArticles) {
-          grid.appendChild(renderArticleCard(article));
-        }
-        daySection.appendChild(grid);
-
-        monthSection.appendChild(daySection);
-      }
-      container.appendChild(monthSection);
+    // articles는 최신순으로 정렬돼 있으므로, "오늘"이 아닌 첫 기사가 곧 오늘/과거의 경계다.
+    const list = document.createElement('ul');
+    list.className = 'article-feed';
+    let dividerPlaced = false;
+    for (const article of articles) {
+      const needsDivider = !dividerPlaced && !isToday(article.pubDate);
+      if (needsDivider) dividerPlaced = true;
+      list.appendChild(renderArticleRow(article, needsDivider));
     }
+    card.appendChild(list);
+    return card;
   }
 
   function renderAll() {
     renderMeta();
-    renderKeywordTabs();
-    renderFeed();
+    const container = document.getElementById('feed');
+    container.innerHTML = '';
+    if (state.keywords.length === 0) {
+      const empty = document.createElement('p');
+      empty.className = 'empty-hint';
+      empty.textContent = '등록된 키워드가 없습니다. 위에서 새 키워드를 추가해보세요.';
+      container.appendChild(empty);
+      return;
+    }
+    for (const { keyword } of state.keywords) {
+      container.appendChild(renderKeywordCard(keyword));
+    }
   }
 
   // ---------- 토스트 ----------
@@ -431,7 +347,6 @@
     try {
       await deleteKeywordRemote(keyword);
       state.keywords = state.keywords.filter((k) => k.keyword !== keyword);
-      if (state.selectedKeyword === keyword) state.selectedKeyword = null;
       renderAll();
       showToast(`"${keyword}" 키워드를 삭제했습니다.`);
     } catch (err) {
