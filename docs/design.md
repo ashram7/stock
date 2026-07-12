@@ -148,8 +148,8 @@
 | 뉴스 데이터 읽기 | `raw.githubusercontent.com/{owner}/{repo}/main/data/news.json` (또는 Contents API)를 직접 fetch — Pages 재배포를 기다리지 않고 커밋 즉시 최신 데이터 반영 |
 | PAT 등록 | 대시보드 최초 접속 시 설정 화면에서 fine-grained PAT 입력 → `localStorage`에 저장(본인 브라우저에만 존재, 코드에는 절대 포함 안 됨) |
 | "업데이트" 버튼 | `POST /repos/{owner}/{repo}/actions/workflows/update-news.yml/dispatches` (Authorization: 저장된 PAT) |
-| "키워드 추가" | `POST /repos/{owner}/{repo}/actions/workflows/add-keyword.yml/dispatches` `{ inputs: { keyword } }` |
-| 진행 상태 표시 | `GET /repos/{owner}/{repo}/actions/workflows/{id}/runs?per_page=1`을 몇 초 간격으로 폴링해 상태를 버튼에 반영, 완료되면 뉴스 데이터 재fetch |
+| "키워드 추가" | Cloudflare Worker로 POST — 상세는 5절 "키워드 추가 즉시응답화" 참고 (2026-07-12 변경) |
+| 진행 상태 표시("업데이트"만 해당) | `GET /repos/{owner}/{repo}/actions/workflows/{id}/runs?per_page=1`을 몇 초 간격으로 폴링해 상태를 버튼에 반영, 완료되면 뉴스 데이터 재fetch |
 
 ### CLAUDE.md 핵심 섹션 목록 (구현 단계에서 작성, 지금은 목차만)
 - 프로젝트 개요, 아키텍처 요약(Actions+Pages, 로컬 서버 없음)
@@ -188,7 +188,49 @@
 
 ---
 
-## 5. 향후 확장 아이디어 (이번 범위 아님)
+## 5. 키워드 추가 즉시응답화 (2026-07-12 변경)
+
+원래 설계에서는 "키워드 추가"도 "업데이트"와 동일하게 GitHub Actions `workflow_dispatch`를 거쳤기 때문에 결과 반영까지 수십 초~1-2분이 걸렸다. 사용자가 "검색 결과는 즉시 보여주고 저장은 나중에 처리"하는 방식으로 변경을 요청해 아래와 같이 바뀌었다.
+
+### 새 흐름
+```
+사용자가 키워드 입력
+   ↓
+브라우저 → Cloudflare Worker로 POST (X-App-Secret 헤더로 인증)
+   ↓
+Worker가 네이버 API 즉시 호출 → 정제·매칭(단순 키워드 매칭, 기존과 동일 로직)
+   ↓
+Worker가 결과를 바로 HTTP 응답으로 반환 (수 초)
+   ↓
+브라우저가 응답을 로컬 state에 반영해 즉시 화면 표시
+   ↓
+(응답과 무관하게) Worker가 ctx.waitUntil()로 GitHub Contents API 호출을 계속 진행
+   → data/keywords.json, data/news.json에 커밋 (백그라운드, 사용자는 기다리지 않음)
+```
+
+### 왜 서버리스 함수가 필요한가
+브라우저에서 네이버 API를 직접 호출할 수 없다 (CORS 미허용 + Client Secret 노출 위험). 즉시 응답을 원한다면 그 호출을 대신해줄 서버가 필요한데, GitHub Actions는 "즉시성"과 안 맞고(대기열+수십 초 단위) GitHub Pages는 정적 호스팅이라 서버 코드를 못 돌린다. 그래서 별도의 경량 서버리스 함수(Cloudflare Worker)를 추가했다. 마찬가지 이유로 GitHub에 쓰기(커밋)하는 토큰도 브라우저가 아니라 Worker가 시크릿으로 보관한다 — 응답 이후 background로 계속 실행하는 패턴은 Cloudflare Workers의 `ctx.waitUntil()`이 가장 깔끔하게 지원한다.
+
+### 영향받은 범위
+- "업데이트"(전체 키워드 재수집) 버튼은 **변경 없음** — 여전히 GitHub Actions `workflow_dispatch` + 브라우저 PAT 방식. 키워드가 많아지면 순차 호출이 오래 걸릴 수 있어 서버리스 함수 타임아웃보다 Actions가 안전하다는 판단.
+- 일일 자동 수집(cron)도 **변경 없음** — `update-news.yml` 그대로.
+- 기존 `add-keyword.yml` 워크플로와 `scripts/addKeyword.js`는 Worker로 완전히 대체되어 삭제했다.
+
+### 구현 스펙 추가
+```
+/worker
+  ├── src/index.js     # Cloudflare Worker 본체 (네이버 검색 + GitHub 백그라운드 저장, 단일 파일)
+  └── wrangler.toml     # Wrangler 설정 (시크릿 값은 여기 넣지 않고 별도 등록)
+```
+- Worker가 보관하는 시크릿: `NAVER_CLIENT_ID`, `NAVER_CLIENT_SECRET`, `GITHUB_TOKEN`(Contents Read/Write 전용, 브라우저 PAT와는 별개), `APP_SHARED_SECRET`
+- 변수: `GITHUB_OWNER`, `GITHUB_REPO`
+- 프론트엔드는 설정(⚙) 패널에 Worker URL과 `APP_SHARED_SECRET`을 추가로 입력받아 localStorage에 저장하고, 요청 시 `X-App-Secret` 헤더로 실어 보낸다 — Worker 엔드포인트가 공개 URL이라도 이 값이 없으면 401로 거부되어 무단 호출(네이버 쿼터 소진, 임의 커밋)을 막는다.
+- 병합 규칙(같은 URL은 한 번만 저장, `matchedKeywords`에 누적)은 `scripts/dataStore.js`의 `mergeArticles`와 동일하게 Worker 안에 재구현했다 (Workers 런타임에서 Node 전용 모듈은 쓸 수 없어 로직을 복제함).
+- 실패 처리: Worker의 GitHub 저장이 실패해도(예: 커밋 충돌) 키워드 자체 저장과 기사 저장은 각각 독립적인 커밋이라 부분 실패가 가능 — 어느 쪽이 실패하든 다음 날 정기 수집(cron)이 다시 시도하므로 데이터 유실로 이어지지 않는다.
+
+---
+
+## 6. 향후 확장 아이디어 (이번 범위 아님)
 - LLM 기반 관련도 필터링, 일일 브리핑 요약 (Actions 워크플로에 선택적 단계 추가)
 - 키워드 삭제·수정 UI
 - PAT 없이도 "업데이트 요청"이 가능하도록 GitHub App/OAuth 로그인 방식으로 전환(보안 강화)

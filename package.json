@@ -2,13 +2,12 @@
   "name": "naver-news-dashboard",
   "version": "1.0.0",
   "private": true,
-  "description": "키워드별 네이버 뉴스 대시보드 (GitHub Actions + GitHub Pages, 로컬 서버 없음)",
+  "description": "키워드별 네이버 뉴스 대시보드 (GitHub Actions + GitHub Pages + Cloudflare Worker, 로컬 서버 없음)",
   "type": "commonjs",
   "engines": {
     "node": ">=18"
   },
   "scripts": {
-    "update": "node scripts/runUpdate.js",
-    "add-keyword": "node scripts/addKeyword.js"
+    "update": "node scripts/runUpdate.js"
   }
 }

@@ -1,0 +1,14 @@
+name = "naver-news-search"
+main = "src/index.js"
+compatibility_date = "2024-09-23"
+
+[vars]
+GITHUB_OWNER = "ashram7"
+GITHUB_REPO = "stock"
+
+# 아래 값들은 이 파일에 넣지 말고 반드시 secret으로 등록한다 (Wrangler CLI 사용 시):
+#   wrangler secret put NAVER_CLIENT_ID
+#   wrangler secret put NAVER_CLIENT_SECRET
+#   wrangler secret put GITHUB_TOKEN
+#   wrangler secret put APP_SHARED_SECRET
+# Cloudflare 대시보드에서 직접 만드는 경우 Settings → Variables and Secrets에서 동일하게 등록한다.

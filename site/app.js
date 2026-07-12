@@ -3,7 +3,6 @@
 
   const GH_API = 'https://api.github.com';
   const UPDATE_WORKFLOW = 'update-news.yml';
-  const ADD_KEYWORD_WORKFLOW = 'add-keyword.yml';
   const POLL_INTERVAL_MS = 5000;
   const POLL_TIMEOUT_MS = 3 * 60 * 1000;
 
@@ -37,6 +36,14 @@
 
   function getPat() {
     return localStorage.getItem('ghPat') || '';
+  }
+
+  function getWorkerUrl() {
+    return (localStorage.getItem('workerUrl') || '').trim();
+  }
+
+  function getAppSecret() {
+    return localStorage.getItem('appSecret') || '';
   }
 
   function authHeaders() {
@@ -257,10 +264,14 @@
     const patInput = document.getElementById('pat-input');
     const ownerInput = document.getElementById('owner-input');
     const repoInput = document.getElementById('repo-input');
+    const workerUrlInput = document.getElementById('worker-url-input');
+    const appSecretInput = document.getElementById('app-secret-input');
 
     patInput.value = getPat();
     ownerInput.value = localStorage.getItem('ghOwner') || '';
     repoInput.value = localStorage.getItem('ghRepo') || '';
+    workerUrlInput.value = getWorkerUrl();
+    appSecretInput.value = getAppSecret();
 
     settingsBtn.addEventListener('click', () => {
       panel.hidden = !panel.hidden;
@@ -270,14 +281,20 @@
       if (patInput.value.trim()) localStorage.setItem('ghPat', patInput.value.trim());
       if (ownerInput.value.trim()) localStorage.setItem('ghOwner', ownerInput.value.trim());
       if (repoInput.value.trim()) localStorage.setItem('ghRepo', repoInput.value.trim());
+      if (workerUrlInput.value.trim()) localStorage.setItem('workerUrl', workerUrlInput.value.trim());
+      if (appSecretInput.value.trim()) localStorage.setItem('appSecret', appSecretInput.value.trim());
       showToast('설정이 저장되었습니다.');
       panel.hidden = true;
     });
 
     document.getElementById('pat-clear-btn').addEventListener('click', () => {
       localStorage.removeItem('ghPat');
+      localStorage.removeItem('workerUrl');
+      localStorage.removeItem('appSecret');
       patInput.value = '';
-      showToast('토큰을 삭제했습니다.');
+      workerUrlInput.value = '';
+      appSecretInput.value = '';
+      showToast('저장된 설정을 삭제했습니다.');
     });
   }
 
@@ -290,17 +307,63 @@
     });
   }
 
+  // 키워드 검색 결과를 로컬 state에 즉시 반영한다 (병합 규칙은 scripts/dataStore.js의 mergeArticles와 동일).
+  // 실제 GitHub 저장은 Worker가 백그라운드에서 처리하므로, 여기서는 화면 표시만 담당한다.
+  function applyArticlesToState(keyword, articles) {
+    if (!state.keywords.some((k) => k.keyword === keyword)) {
+      state.keywords.push({ keyword, createdAt: new Date().toISOString() });
+    }
+    for (const article of articles) {
+      const id = article.url;
+      const existing = state.news.articles[id];
+      const matchedKeywords = new Set(existing ? existing.matchedKeywords : []);
+      matchedKeywords.add(keyword);
+      state.news.articles[id] = { ...article, fetchedAt: new Date().toISOString(), matchedKeywords: Array.from(matchedKeywords) };
+    }
+    state.news.meta = { ...state.news.meta, lastUpdateAt: new Date().toISOString() };
+  }
+
+  async function searchKeywordInstant(keyword) {
+    const workerUrl = getWorkerUrl();
+    const appSecret = getAppSecret();
+    if (!workerUrl || !appSecret) {
+      throw new Error('설정(⚙)에서 Worker URL과 앱 시크릿을 먼저 등록해주세요.');
+    }
+    const res = await fetch(workerUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'X-App-Secret': appSecret },
+      body: JSON.stringify({ keyword })
+    });
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok) throw new Error(data.error || `검색 실패 (HTTP ${res.status})`);
+    return data.articles || [];
+  }
+
   function initAddKeywordForm() {
     const form = document.getElementById('add-keyword-form');
     const input = document.getElementById('new-keyword-input');
     const submitBtn = form.querySelector('button[type="submit"]');
 
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
       const keyword = input.value.trim();
       if (!keyword) return;
-      runAndReload(submitBtn, ADD_KEYWORD_WORKFLOW, { keyword }, `"${keyword}" 추가가`);
-      input.value = '';
+
+      const originalText = submitBtn.textContent;
+      submitBtn.disabled = true;
+      submitBtn.textContent = '검색 중...';
+      try {
+        const articles = await searchKeywordInstant(keyword);
+        applyArticlesToState(keyword, articles);
+        renderAll();
+        showToast(`"${keyword}" 기사 ${articles.length}건 표시됨 (GitHub 저장은 백그라운드 진행 중)`);
+        input.value = '';
+      } catch (err) {
+        showToast(err.message, true);
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalText;
+      }
     });
   }
 
