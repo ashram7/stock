@@ -93,8 +93,8 @@ body {
 
 .logo-mark {
   flex-shrink: 0;
-  width: 24px;
-  height: 24px;
+  width: 36px;
+  height: 36px;
 }
 
 .topbar h1 {
@@ -286,10 +286,10 @@ body {
   padding: 9px 15px;
 }
 
-/* ---------- 오늘/전체 토글 (헤더 두 번째 줄) ---------- */
+/* ---------- 오늘/전체 토글 (데스크톱: 헤더 한 줄에 같이 배열, 모바일: 별도 줄) ---------- */
 
 .view-toggle {
-  flex: 0 0 100%; /* 항상 새 줄로 강제 줄바꿈 */
+  flex: 0 0 auto;
   display: flex;
   gap: var(--space-xs);
 }
@@ -300,8 +300,8 @@ body {
   background: transparent;
   color: var(--muted);
   border-radius: var(--radius-full);
-  padding: 10px 20px;
-  font-size: 14px;
+  padding: 6px 14px;
+  font-size: 13px;
   font-weight: 500;
   line-height: 1.29;
   cursor: pointer;
