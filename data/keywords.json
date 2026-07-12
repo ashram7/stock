@@ -1,1 +1,22 @@
-[]
+[
+  {
+    "id": "인공지능-mrer4s0m",
+    "keyword": "인공지능",
+    "createdAt": "2026-07-10T09:47:12.214Z"
+  },
+  {
+    "id": "삼성전자-mrerb5iu",
+    "keyword": "삼성전자",
+    "createdAt": "2026-07-10T09:52:09.655Z"
+  },
+  {
+    "id": "이재명-mrerdazp",
+    "keyword": "이재명",
+    "createdAt": "2026-07-10T09:53:50.053Z"
+  },
+  {
+    "id": "사건-사고-mret8aht",
+    "keyword": "사건 사고",
+    "createdAt": "2026-07-10T10:45:55.361Z"
+  }
+]
