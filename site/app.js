@@ -9,7 +9,8 @@
   const state = {
     keywords: [],
     news: { articles: {}, meta: {} },
-    scope: 'today'
+    scope: 'today',
+    collapsedKeywords: new Set() // 접힌 키워드 카드 (세션 동안 유지, 재렌더에도 보존)
   };
 
   // ---------- 저장소 정보 ----------
@@ -112,15 +113,32 @@
     return d.toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit' });
   }
 
+  // 같은 날이면 "시:분"만, 아니면 "월/일 시:분"으로 짧게 표시(24시간제). 전체 문구는 title 툴팁으로 남긴다.
+  function formatShortUpdate(pubDate) {
+    const d = new Date(pubDate);
+    if (Number.isNaN(d.getTime())) return '';
+    const now = new Date();
+    const sameDay = d.getFullYear() === now.getFullYear() && d.getMonth() === now.getMonth() && d.getDate() === now.getDate();
+    const time = `${String(d.getHours()).padStart(2, '0')}:${String(d.getMinutes()).padStart(2, '0')}`;
+    if (sameDay) return time;
+    return `${d.getMonth() + 1}/${d.getDate()} ${time}`;
+  }
+
   function renderMeta() {
     const el = document.getElementById('last-update');
     const meta = state.news.meta || {};
+    el.classList.remove('status-partial', 'status-fail');
     if (!meta.lastUpdateAt) {
-      el.textContent = '아직 업데이트된 적 없음';
+      el.textContent = '업데이트 기록 없음';
+      el.removeAttribute('title');
       return;
     }
     const statusLabel = { success: '정상', partial_fail: '일부 실패', fail: '실패' }[meta.lastUpdateStatus] || meta.lastUpdateStatus || '';
-    el.textContent = `마지막 업데이트: ${formatDate(meta.lastUpdateAt)} (${statusLabel})`;
+    const dot = { success: '●', partial_fail: '●', fail: '●' }[meta.lastUpdateStatus] || '●';
+    el.textContent = `${dot} ${formatShortUpdate(meta.lastUpdateAt)}`;
+    el.title = `마지막 업데이트: ${formatDate(meta.lastUpdateAt)} (${statusLabel})`;
+    if (meta.lastUpdateStatus === 'partial_fail') el.classList.add('status-partial');
+    if (meta.lastUpdateStatus === 'fail') el.classList.add('status-fail');
   }
 
   // isDividerStart이면 "오늘 지난 기사" 시작 지점을 표시하는 진한 구분선을 위에 붙인다.
@@ -152,14 +170,29 @@
   }
 
   function renderKeywordCard(keyword) {
+    const collapsed = state.collapsedKeywords.has(keyword);
+
     const card = document.createElement('section');
-    card.className = 'keyword-card';
+    card.className = `keyword-card${collapsed ? ' collapsed' : ''}`;
 
     const header = document.createElement('div');
     header.className = 'keyword-card-header';
+    header.addEventListener('click', () => {
+      if (state.collapsedKeywords.has(keyword)) state.collapsedKeywords.delete(keyword);
+      else state.collapsedKeywords.add(keyword);
+      renderAll();
+    });
+
     const heading = document.createElement('h2');
     heading.textContent = keyword; // textContent만 사용 — XSS 방지
     header.appendChild(heading);
+
+    const chevron = document.createElement('span');
+    chevron.className = 'card-chevron';
+    chevron.textContent = '⌄';
+    chevron.setAttribute('aria-hidden', 'true');
+    header.appendChild(chevron);
+
     card.appendChild(header);
 
     const delBtn = document.createElement('button');
@@ -168,7 +201,10 @@
     delBtn.textContent = '×';
     delBtn.title = `"${keyword}" 삭제`;
     delBtn.setAttribute('aria-label', `${keyword} 키워드 삭제`);
-    delBtn.addEventListener('click', () => handleDeleteKeyword(keyword));
+    delBtn.addEventListener('click', (e) => {
+      e.stopPropagation(); // 헤더 접기/펼치기 토글과 분리
+      handleDeleteKeyword(keyword);
+    });
     card.appendChild(delBtn);
 
     const articles = articlesForKeyword(keyword);
@@ -180,16 +216,27 @@
       return card;
     }
 
-    // articles는 최신순으로 정렬돼 있으므로, "오늘"이 아닌 첫 기사가 곧 오늘/과거의 경계다.
+    // 기사 목록은 카드 안에서 ~2.5개 높이로 제한 + 내부 스크롤. 아래 그라데이션으로 더 있음을 암시한다.
+    const wrap = document.createElement('div');
+    wrap.className = 'article-feed-wrap';
+
     const list = document.createElement('ul');
     list.className = 'article-feed';
+    // articles는 최신순으로 정렬돼 있으므로, "오늘"이 아닌 첫 기사가 곧 오늘/과거의 경계다.
     let dividerPlaced = false;
     for (const article of articles) {
       const needsDivider = !dividerPlaced && !isToday(article.pubDate);
       if (needsDivider) dividerPlaced = true;
       list.appendChild(renderArticleRow(article, needsDivider));
     }
-    card.appendChild(list);
+    wrap.appendChild(list);
+
+    const fade = document.createElement('div');
+    fade.className = 'feed-fade';
+    fade.setAttribute('aria-hidden', 'true');
+    wrap.appendChild(fade);
+
+    card.appendChild(wrap);
     return card;
   }
 
@@ -266,17 +313,16 @@
     throw new Error('실행 확인 시간이 초과되었습니다. 잠시 후 GitHub Actions 탭에서 직접 확인해주세요.');
   }
 
+  // button은 아이콘 전용 버튼이라 상태 텍스트 대신 회전 애니메이션(spinning 클래스)으로 진행 중임을 표시하고,
+  // 구체적인 진행 상황은 토스트로 안내한다.
   async function runAndReload(button, workflowFile, inputs, label) {
-    const originalText = button.textContent;
     button.disabled = true;
+    button.classList.add('spinning');
     try {
       const sinceMs = Date.now();
-      button.textContent = '요청 전송 중...';
+      showToast(`${label} 요청을 보냈습니다. 반영까지 최대 1~2분 걸릴 수 있어요.`);
       await dispatchWorkflow(workflowFile, inputs);
-      button.textContent = '실행 대기 중...';
-      const conclusion = await waitForWorkflow(workflowFile, sinceMs, (status) => {
-        button.textContent = status === 'queued' ? '대기열에서 대기 중...' : '수집 중...';
-      });
+      const conclusion = await waitForWorkflow(workflowFile, sinceMs, () => {});
       if (conclusion !== 'success') {
         showToast(`${label} 완료되었지만 결과가 "${conclusion}"입니다. Actions 탭을 확인해주세요.`, true);
       } else {
@@ -287,7 +333,7 @@
       showToast(err.message, true);
     } finally {
       button.disabled = false;
-      button.textContent = originalText;
+      button.classList.remove('spinning');
     }
   }
 
@@ -347,6 +393,7 @@
     try {
       await deleteKeywordRemote(keyword);
       state.keywords = state.keywords.filter((k) => k.keyword !== keyword);
+      state.collapsedKeywords.delete(keyword);
       renderAll();
       showToast(`"${keyword}" 키워드를 삭제했습니다.`);
     } catch (err) {
