@@ -1,6 +1,12 @@
 name = "naver-news-search"
 main = "src/index.js"
-compatibility_date = "2024-09-23"
+compatibility_date = "2026-07-12"
+
+[observability]
+enabled = true
+
+[observability.logs]
+enabled = true
 
 [vars]
 GITHUB_OWNER = "ashram7"
@@ -12,3 +18,7 @@ GITHUB_REPO = "stock"
 #   wrangler secret put GITHUB_TOKEN
 #   wrangler secret put APP_SHARED_SECRET
 # Cloudflare 대시보드에서 직접 만드는 경우 Settings → Variables and Secrets에서 동일하게 등록한다.
+#
+# GITHUB_TOKEN 권한 안내 (2026-07-14 변경): "업데이트" 버튼 트리거도 Worker가 대신 처리하므로
+# 이 PAT은 이제 Contents: Read/Write 뿐 아니라 Actions: Read/Write 권한도 필요하다.
+# (기존에는 Contents만 있으면 됐음 — GitHub 설정에서 PAT 권한을 수정하거나 재발급 후 여기 secret도 갱신할 것)

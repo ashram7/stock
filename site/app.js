@@ -33,11 +33,10 @@
     return null;
   }
 
-  // ---------- PAT / 설정 ----------
-
-  function getPat() {
-    return localStorage.getItem('ghPat') || '';
-  }
+  // ---------- Worker / 설정 ----------
+  // GitHub PAT는 브라우저에 전혀 저장하지 않는다 — 모든 쓰기(추가/삭제/업데이트)는
+  // Worker가 자체 보관한 GITHUB_TOKEN으로 대신 처리하고, 브라우저는 Worker URL과
+  // 앱 시크릿(X-App-Secret, 기억하기 쉬운 값으로 설정 가능)만 있으면 된다.
 
   function getWorkerUrl() {
     let url = (localStorage.getItem('workerUrl') || '').trim();
@@ -52,11 +51,20 @@
     return localStorage.getItem('appSecret') || '';
   }
 
-  function authHeaders() {
-    const token = getPat();
-    const headers = { Accept: 'application/vnd.github+json', 'X-GitHub-Api-Version': '2022-11-28' };
-    if (token) headers.Authorization = `Bearer ${token}`;
-    return headers;
+  async function callWorker(payload) {
+    const workerUrl = getWorkerUrl();
+    const appSecret = getAppSecret();
+    if (!workerUrl || !appSecret) {
+      throw new Error('설정(⚙)에서 Worker URL과 앱 시크릿을 먼저 등록해주세요.');
+    }
+    const res = await fetch(workerUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'X-App-Secret': appSecret },
+      body: JSON.stringify(payload)
+    });
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok) throw new Error(data.error || `요청 실패 (HTTP ${res.status})`);
+    return data;
   }
 
   // ---------- 데이터 로드 ----------
@@ -272,31 +280,19 @@
     toastTimer = setTimeout(() => { el.hidden = true; }, 5000);
   }
 
-  // ---------- GitHub Actions 트리거 & 폴링 ----------
+  // ---------- GitHub Actions 트리거(Worker 경유) & 폴링 ----------
+  // "업데이트" 트리거 자체는 Worker가 자체 GITHUB_TOKEN으로 대신 호출한다(브라우저는 PAT 불필요).
+  // 진행 상태 폴링은 public 저장소의 읽기 전용 엔드포인트라 인증 없이도 가능하므로 그대로 둔다.
 
-  async function dispatchWorkflow(workflowFile, inputs) {
-    const repoInfo = getRepoInfo();
-    if (!repoInfo) throw new Error('저장소 정보를 알 수 없습니다.');
-    if (!getPat()) throw new Error('GitHub 토큰이 필요합니다. 설정(⚙)에서 등록해주세요.');
-
-    const body = { ref: 'main' };
-    if (inputs) body.inputs = inputs;
-
-    const res = await fetch(
-      `${GH_API}/repos/${repoInfo.owner}/${repoInfo.repo}/actions/workflows/${workflowFile}/dispatches`,
-      { method: 'POST', headers: { ...authHeaders(), 'Content-Type': 'application/json' }, body: JSON.stringify(body) }
-    );
-    if (res.status !== 204) {
-      const detail = await res.text().catch(() => '');
-      throw new Error(`워크플로 트리거 실패 (HTTP ${res.status}) ${detail}`);
-    }
+  async function dispatchWorkflow() {
+    await callWorker({ action: 'update' });
   }
 
   async function findRunSince(workflowFile, sinceMs) {
     const repoInfo = getRepoInfo();
     const res = await fetch(
       `${GH_API}/repos/${repoInfo.owner}/${repoInfo.repo}/actions/workflows/${workflowFile}/runs?per_page=5`,
-      { headers: authHeaders() }
+      { headers: { Accept: 'application/vnd.github+json', 'X-GitHub-Api-Version': '2022-11-28' } }
     );
     if (!res.ok) return null;
     const data = await res.json();
@@ -319,13 +315,13 @@
 
   // button은 아이콘 전용 버튼이라 상태 텍스트 대신 회전 애니메이션(spinning 클래스)으로 진행 중임을 표시하고,
   // 구체적인 진행 상황은 토스트로 안내한다.
-  async function runAndReload(button, workflowFile, inputs, label) {
+  async function runAndReload(button, workflowFile, label) {
     button.disabled = true;
     button.classList.add('spinning');
     try {
       const sinceMs = Date.now();
       showToast(`${label} 요청을 보냈습니다. 반영까지 최대 1~2분 걸릴 수 있어요.`);
-      await dispatchWorkflow(workflowFile, inputs);
+      await dispatchWorkflow();
       const conclusion = await waitForWorkflow(workflowFile, sinceMs, () => {});
       if (conclusion !== 'success') {
         showToast(`${label} 완료되었지만 결과가 "${conclusion}"입니다. Actions 탭을 확인해주세요.`, true);
@@ -341,61 +337,14 @@
     }
   }
 
-  // ---------- 키워드 삭제 (GitHub Contents API 직접 호출, PAT 사용) ----------
-
-  function encodeBase64Utf8(str) {
-    const bytes = new TextEncoder().encode(str);
-    let binary = '';
-    for (const b of bytes) binary += String.fromCharCode(b);
-    return btoa(binary);
-  }
-
-  function decodeBase64Utf8(b64) {
-    const binary = atob(b64.replace(/\n/g, ''));
-    const bytes = Uint8Array.from(binary, (c) => c.charCodeAt(0));
-    return new TextDecoder().decode(bytes);
-  }
-
-  // data/keywords.json에서 해당 키워드만 제거해 커밋한다. 이미 수집된 기사(data/news.json)는 건드리지 않는다.
-  async function deleteKeywordRemote(keyword) {
-    const repoInfo = getRepoInfo();
-    if (!repoInfo) throw new Error('저장소 정보를 알 수 없습니다.');
-    if (!getPat()) throw new Error('GitHub 토큰이 필요합니다. 설정(⚙)에서 등록해주세요.');
-
-    const getRes = await fetch(
-      `${GH_API}/repos/${repoInfo.owner}/${repoInfo.repo}/contents/data/keywords.json?ref=main`,
-      { headers: authHeaders() }
-    );
-    if (!getRes.ok) throw new Error(`키워드 목록 조회 실패 (HTTP ${getRes.status})`);
-    const fileData = await getRes.json();
-    const currentList = JSON.parse(decodeBase64Utf8(fileData.content));
-    const updatedList = currentList.filter((k) => k.keyword !== keyword);
-
-    const putRes = await fetch(
-      `${GH_API}/repos/${repoInfo.owner}/${repoInfo.repo}/contents/data/keywords.json`,
-      {
-        method: 'PUT',
-        headers: { ...authHeaders(), 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          message: `chore: remove keyword (${keyword})`,
-          content: encodeBase64Utf8(`${JSON.stringify(updatedList, null, 2)}\n`),
-          sha: fileData.sha,
-          branch: 'main'
-        })
-      }
-    );
-    if (!putRes.ok) {
-      const detail = await putRes.text().catch(() => '');
-      throw new Error(`키워드 삭제 실패 (HTTP ${putRes.status}) ${detail}`);
-    }
-  }
+  // ---------- 키워드 삭제 (Worker 경유, PAT 불필요) ----------
 
   async function handleDeleteKeyword(keyword) {
     const confirmed = confirm(`"${keyword}" 키워드를 삭제하시겠습니까?\n이미 수집된 기사는 유지되고, 목록에서만 제거됩니다.`);
     if (!confirmed) return;
 
     try {
-      await deleteKeywordRemote(keyword);
+      await callWorker({ action: 'delete', keyword });
       state.keywords = state.keywords.filter((k) => k.keyword !== keyword);
       state.collapsedKeywords.delete(keyword);
       renderAll();
@@ -408,15 +357,16 @@
   // ---------- 설정 패널 ----------
 
   function initSettingsPanel() {
+    // 예전 PAT 방식의 잔여 값이 남아있다면 정리한다(더 이상 쓰이지 않음).
+    localStorage.removeItem('ghPat');
+
     const panel = document.getElementById('settings-panel');
     const settingsBtn = document.getElementById('settings-btn');
-    const patInput = document.getElementById('pat-input');
     const ownerInput = document.getElementById('owner-input');
     const repoInput = document.getElementById('repo-input');
     const workerUrlInput = document.getElementById('worker-url-input');
     const appSecretInput = document.getElementById('app-secret-input');
 
-    patInput.value = getPat();
     ownerInput.value = localStorage.getItem('ghOwner') || '';
     repoInput.value = localStorage.getItem('ghRepo') || '';
     workerUrlInput.value = getWorkerUrl();
@@ -427,7 +377,6 @@
     });
 
     document.getElementById('pat-save-btn').addEventListener('click', () => {
-      if (patInput.value.trim()) localStorage.setItem('ghPat', patInput.value.trim());
       if (ownerInput.value.trim()) localStorage.setItem('ghOwner', ownerInput.value.trim());
       if (repoInput.value.trim()) localStorage.setItem('ghRepo', repoInput.value.trim());
       if (workerUrlInput.value.trim()) localStorage.setItem('workerUrl', workerUrlInput.value.trim());
@@ -437,10 +386,8 @@
     });
 
     document.getElementById('pat-clear-btn').addEventListener('click', () => {
-      localStorage.removeItem('ghPat');
       localStorage.removeItem('workerUrl');
       localStorage.removeItem('appSecret');
-      patInput.value = '';
       workerUrlInput.value = '';
       appSecretInput.value = '';
       showToast('저장된 설정을 삭제했습니다.');
@@ -452,7 +399,7 @@
   function initUpdateButton() {
     const btn = document.getElementById('update-btn');
     btn.addEventListener('click', () => {
-      runAndReload(btn, UPDATE_WORKFLOW, undefined, '업데이트가');
+      runAndReload(btn, UPDATE_WORKFLOW, '업데이트가');
     });
   }
 
@@ -473,18 +420,7 @@
   }
 
   async function searchKeywordInstant(keyword) {
-    const workerUrl = getWorkerUrl();
-    const appSecret = getAppSecret();
-    if (!workerUrl || !appSecret) {
-      throw new Error('설정(⚙)에서 Worker URL과 앱 시크릿을 먼저 등록해주세요.');
-    }
-    const res = await fetch(workerUrl, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'X-App-Secret': appSecret },
-      body: JSON.stringify({ keyword })
-    });
-    const data = await res.json().catch(() => ({}));
-    if (!res.ok) throw new Error(data.error || `검색 실패 (HTTP ${res.status})`);
+    const data = await callWorker({ action: 'add', keyword });
     return data.articles || [];
   }
 

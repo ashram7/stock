@@ -1,13 +1,16 @@
-// Cloudflare Worker: 키워드를 받아 네이버 뉴스를 즉시 검색해 응답하고,
-// GitHub 저장(commit)은 waitUntil()로 응답 이후 백그라운드에서 계속 진행한다.
+// Cloudflare Worker: 대시보드의 모든 쓰기 동작(키워드 추가/삭제, 전체 업데이트)을 대신 처리한다.
+// 브라우저는 GitHub PAT를 전혀 저장하지 않고, 이 Worker를 호출할 때 쓰는 APP_SHARED_SECRET 하나만 있으면 된다.
 //
 // 필요한 값 (Cloudflare 대시보드 → Settings → Variables and Secrets):
 //   NAVER_CLIENT_ID       (secret)
 //   NAVER_CLIENT_SECRET   (secret)
-//   GITHUB_TOKEN          (secret)  — 이 저장소의 Contents: Read/Write 권한을 가진 fine-grained PAT
+//   GITHUB_TOKEN          (secret)  — 이 저장소 한정 fine-grained PAT, Contents: Read/Write + Actions: Read/Write 필요
+//                                     (기존에는 Contents만 필요했으나 "업데이트" 트리거 위임을 위해 Actions 권한 추가 필요)
 //   GITHUB_OWNER          (variable, 예: ashram7)
 //   GITHUB_REPO           (variable, 예: stock)
-//   APP_SHARED_SECRET     (secret)  — 대시보드 설정 패널에 입력하는 값과 동일해야 함(무단 호출 방지)
+//   APP_SHARED_SECRET     (secret)  — 대시보드 설정 패널에 입력하는 값과 동일해야 함(무단 호출 방지). 기억하기 쉬운 값으로 정해도 됨.
+
+const UPDATE_WORKFLOW = 'update-news.yml';
 
 export default {
   async fetch(request, env, ctx) {
@@ -31,29 +34,78 @@ export default {
     }
     if (!body || typeof body !== 'object') body = {};
 
-    const keyword = typeof body.keyword === 'string' ? body.keyword.trim() : '';
-    if (!keyword) return withCors(jsonResponse({ error: '키워드가 필요합니다' }, 400));
-    if (keyword.length > 50) return withCors(jsonResponse({ error: '키워드가 너무 깁니다 (최대 50자)' }, 400));
+    const action = typeof body.action === 'string' ? body.action : 'add';
 
-    let items;
-    try {
-      items = await searchNaverNews(keyword, env);
-    } catch (err) {
-      return withCors(jsonResponse({ error: `네이버 API 호출 실패: ${err.message}` }, 502));
+    if (action === 'update') {
+      return handleUpdate(env);
     }
-
-    const articles = filterAndClean(items, keyword);
-
-    // 응답은 여기서 바로 반환하고, 실제 GitHub 커밋은 응답 이후 백그라운드에서 계속한다.
-    ctx.waitUntil(
-      persistToGitHub(keyword, articles, env).catch((err) => {
-        console.error(`백그라운드 저장 실패 [${keyword}]: ${err.message}`);
-      })
-    );
-
-    return withCors(jsonResponse({ keyword, articles }));
+    if (action === 'delete') {
+      return handleDelete(body, env);
+    }
+    return handleAdd(body, env, ctx);
   }
 };
+
+async function handleAdd(body, env, ctx) {
+  const keyword = typeof body.keyword === 'string' ? body.keyword.trim() : '';
+  if (!keyword) return withCors(jsonResponse({ error: '키워드가 필요합니다' }, 400));
+  if (keyword.length > 50) return withCors(jsonResponse({ error: '키워드가 너무 깁니다 (최대 50자)' }, 400));
+
+  let items;
+  try {
+    items = await searchNaverNews(keyword, env);
+  } catch (err) {
+    return withCors(jsonResponse({ error: `네이버 API 호출 실패: ${err.message}` }, 502));
+  }
+
+  const articles = filterAndClean(items, keyword);
+
+  // 응답은 여기서 바로 반환하고, 실제 GitHub 커밋은 응답 이후 백그라운드에서 계속한다.
+  ctx.waitUntil(
+    persistToGitHub(keyword, articles, env).catch((err) => {
+      console.error(`백그라운드 저장 실패 [${keyword}]: ${err.message}`);
+    })
+  );
+
+  return withCors(jsonResponse({ keyword, articles }));
+}
+
+// "업데이트" 버튼: 브라우저 대신 Worker가 GitHub Actions workflow_dispatch를 트리거한다.
+async function handleUpdate(env) {
+  const res = await fetch(
+    `https://api.github.com/repos/${env.GITHUB_OWNER}/${env.GITHUB_REPO}/actions/workflows/${UPDATE_WORKFLOW}/dispatches`,
+    {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${env.GITHUB_TOKEN}`,
+        'User-Agent': 'naver-news-worker',
+        Accept: 'application/vnd.github+json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ ref: 'main' })
+    }
+  );
+  if (res.status !== 204) {
+    const detail = await res.text().catch(() => '');
+    return withCors(jsonResponse({ error: `워크플로 트리거 실패 (HTTP ${res.status}) ${detail}` }, 502));
+  }
+  return withCors(jsonResponse({ ok: true }));
+}
+
+// "키워드 삭제": data/keywords.json에서만 제거한다(이미 수집된 기사는 유지).
+async function handleDelete(body, env) {
+  const keyword = typeof body.keyword === 'string' ? body.keyword.trim() : '';
+  if (!keyword) return withCors(jsonResponse({ error: '키워드가 필요합니다' }, 400));
+
+  try {
+    const kw = await ghGetFile('data/keywords.json', env);
+    const updated = kw.json.filter((k) => k.keyword !== keyword);
+    await ghPutFile('data/keywords.json', updated, kw.sha, `chore: remove keyword (${keyword})`, env);
+  } catch (err) {
+    return withCors(jsonResponse({ error: `키워드 삭제 실패: ${err.message}` }, 502));
+  }
+  return withCors(jsonResponse({ ok: true }));
+}
 
 function withCors(res) {
   const headers = new Headers(res.headers);

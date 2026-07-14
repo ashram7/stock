@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=10">
+<link rel="stylesheet" href="style.css?v=11">
 </head>
 <body>
 <header class="topbar">
@@ -28,7 +28,7 @@
       <div class="status-row">
         <span id="last-update" class="last-update">확인 중...</span>
         <button id="update-btn" class="btn btn-icon" title="업데이트" aria-label="업데이트">⟳</button>
-        <button id="settings-btn" class="btn btn-icon" title="GitHub 토큰 설정" aria-label="설정">⚙</button>
+        <button id="settings-btn" class="btn btn-icon" title="연결 설정" aria-label="설정">⚙</button>
       </div>
       <div class="view-toggle" role="group" aria-label="보기 범위">
         <button class="scope-btn active" data-scope="today">오늘</button>
@@ -39,15 +39,19 @@
 </header>
 
 <section id="settings-panel" class="panel" hidden>
-  <h2>GitHub 연결 설정 ("업데이트" 버튼용)</h2>
+  <h2>연결 설정</h2>
   <p class="hint">
-    "업데이트"(전체 재수집)는 이 저장소에 대한 <strong>Contents: Read/Write</strong>,
-    <strong>Actions: Read/Write</strong> 권한을 가진 fine-grained Personal Access Token(PAT)이 필요합니다.
-    토큰은 이 브라우저의 localStorage에만 저장되며 어디로도 전송되지 않습니다(GitHub API 호출 시에만 사용).
+    "업데이트"/"키워드 추가"/"키워드 삭제"는 모두 Cloudflare Worker가 대신 처리합니다.
+    이 브라우저에는 GitHub 토큰을 전혀 저장하지 않고, 아래 두 값만 있으면 됩니다.
+    새 브라우저에서 처음 열었다면 이 두 값만 다시 입력하면 됩니다(둘 다 이 브라우저의 localStorage에만 저장됨).
   </p>
   <label class="field">
-    GitHub Personal Access Token
-    <input type="password" id="pat-input" placeholder="github_pat_...">
+    Worker URL
+    <input type="text" id="worker-url-input" placeholder="https://naver-news-search.xxxx.workers.dev">
+  </label>
+  <label class="field">
+    앱 시크릿 (X-App-Secret)
+    <input type="password" id="app-secret-input" placeholder="Worker의 APP_SHARED_SECRET과 동일한 값(기억하기 쉬운 값으로 정해도 됨)">
   </label>
   <div class="field-row">
     <label class="field">
@@ -59,20 +63,6 @@
       <input type="text" id="repo-input" placeholder="예: naver-news-dashboard">
     </label>
   </div>
-
-  <h2>키워드 검색 설정 ("키워드 추가"용)</h2>
-  <p class="hint">
-    "키워드 추가"는 Cloudflare Worker를 통해 즉시 검색 결과를 보여줍니다. Worker URL과, Worker에 등록해둔
-    앱 시크릿(무단 호출 방지용)을 입력하세요. 이 값들도 브라우저에만 저장됩니다.
-  </p>
-  <label class="field">
-    Worker URL
-    <input type="text" id="worker-url-input" placeholder="https://naver-news-search.xxxx.workers.dev">
-  </label>
-  <label class="field">
-    앱 시크릿 (X-App-Secret)
-    <input type="password" id="app-secret-input" placeholder="Worker의 APP_SHARED_SECRET과 동일한 값">
-  </label>
 
   <div class="btn-row">
     <button id="pat-save-btn" class="btn btn-primary">저장</button>
@@ -86,6 +76,6 @@
 
 <div id="toast" class="toast" hidden></div>
 
-<script src="app.js?v=10"></script>
+<script src="app.js?v=11"></script>
 </body>
 </html>
