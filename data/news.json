@@ -38017,8 +38017,25 @@
     }
   },
   "meta": {
-    "lastUpdateAt": "2026-08-23T22:16:11.521Z",
-    "lastUpdateStatus": "success",
-    "lastUpdateErrors": []
+    "lastUpdateAt": "2026-08-24T22:21:19.841Z",
+    "lastUpdateStatus": "fail",
+    "lastUpdateErrors": [
+      {
+        "keyword": "인공지능",
+        "error": "fetch failed"
+      },
+      {
+        "keyword": "삼성전자",
+        "error": "fetch failed"
+      },
+      {
+        "keyword": "엔비디아",
+        "error": "fetch failed"
+      },
+      {
+        "keyword": "비트코인",
+        "error": "fetch failed"
+      }
+    ]
   }
 }
