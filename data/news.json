@@ -44579,10 +44579,765 @@
       "matchedKeywords": [
         "비트코인"
       ]
+    },
+    "48f70b5d1b94b73b": {
+      "url": "https://n.news.naver.com/mnews/article/018/0006363522?sid=101",
+      "title": "\"LS전선 밸류체인 통했다\"…자회사 3곳 나란히 최대 실적",
+      "description": "LS마린솔루션 해저케이블 포설선 GL2030 (사진=LS마린솔루션) LS전선의 주요 자회사들이 해저케이블과 인공지능(AI) 데이터센터 등 글로벌 전력 인프라 투자 확대에 힘입어 상반기 나란히 역대 최대 실적을 기록했다....",
+      "pubDate": "Fri, 04 Sep 2026 08:43:00 +0900",
+      "fetchedAt": "2026-09-03T23:44:48.698Z",
+      "matchedKeywords": [
+        "인공지능"
+      ]
+    },
+    "933f23160e577220": {
+      "url": "https://n.news.naver.com/mnews/article/018/0006363523?sid=101",
+      "title": "DYP, AI 데이터센터·휴머노이드로 사업 확대…열관리·경량화 기술 활용",
+      "description": "모빌리티 부품 기업 DYP(092780)가 기존 자동차 피스톤 중심의 사업구조에서 벗어나 인공지능(AI) 데이터센터와 로봇·휴머노이드 등으로 사업 영역을 확대한다. DYP는 자동차 부품 사업을 통해 축적한 알루미늄 소재...",
+      "pubDate": "Fri, 04 Sep 2026 08:43:00 +0900",
+      "fetchedAt": "2026-09-03T23:44:48.699Z",
+      "matchedKeywords": [
+        "인공지능"
+      ]
+    },
+    "58ae0ab85084e2ff": {
+      "url": "https://www.pennmike.com/news/articleView.html?idxno=127076",
+      "title": "[재계핫이슈] 삼전닉스 현금 두고 '삼각쟁탈전'...급기야 한전도 가세",
+      "description": "삼성전자와 SK하이닉스가 인공지능(AI) 반도체 초호황으로 막대한 현금을 쌓아가는 가운데 새로운 '청구서'가 날아들었다. 한국전력이 두 회사에 앞으로 낼 5년치 전기요금 25조원을 미리 내달라고 제안한 것이다. 3일...",
+      "pubDate": "Fri, 04 Sep 2026 08:42:00 +0900",
+      "fetchedAt": "2026-09-03T23:44:48.699Z",
+      "matchedKeywords": [
+        "인공지능"
+      ]
+    },
+    "4f6cd4ac3b4b419c": {
+      "url": "https://daily.hankooki.com/news/articleView.html?idxno=1402660",
+      "title": "한국앤컴퍼니그룹, 산업 AI 컨퍼런스 참석…'에센셜 싱킹' 강조",
+      "description": "김 전무는 한국앤컴퍼니그룹의 CDO&CIO로서 엔터프라이즈 IT와 디지털전환, 인공지능전환을 총괄하고 있다. 김 전무는 AI를 도입한 기업 가운데 실제 비즈니스 가치 창출로 이어지는 비율이 30% 미만이며, 상당수...",
+      "pubDate": "Fri, 04 Sep 2026 08:42:00 +0900",
+      "fetchedAt": "2026-09-03T23:44:48.699Z",
+      "matchedKeywords": [
+        "인공지능"
+      ]
+    },
+    "aae486292868bc88": {
+      "url": "https://www.gukjenews.com/news/articleView.html?idxno=3683528",
+      "title": "충북테크노파크, 대만 SEMICON서 AI 제조혁신 기술 확보...'AX 사업화 지...",
+      "description": "(재)충북테크노파크가 대만 타이베이에서 열린 SEMICON Taiwan 2026 전시회 현장에서 글로벌 제조산업의 인공지능(AI) 대전환 흐름을 직접 확인하고 충북형 제조혁신 모델 발굴에 나섰다. 충북테크노파크는 3일 전시회에서...",
+      "pubDate": "Fri, 04 Sep 2026 08:42:00 +0900",
+      "fetchedAt": "2026-09-03T23:44:48.699Z",
+      "matchedKeywords": [
+        "인공지능"
+      ]
+    },
+    "5fd339ac05d5297b": {
+      "url": "https://www.slist.kr/news/articleView.html?idxno=763577",
+      "title": "삼성전자, IFA 2026서 '삼성 크리에이터 허브' 운영",
+      "description": "체험 공간과 스트리밍 스튜디오, 프라이빗 라운지를 결합해 삼성의 인공지능(AI) 생태계를 직접 경험하고 콘텐츠로 제작할 수 있도록 구성했다. 특히 Z세대와 디지털 네이티브의 감성에 맞춰 기술 사양 중심의 전시에서...",
+      "pubDate": "Fri, 04 Sep 2026 08:42:00 +0900",
+      "fetchedAt": "2026-09-03T23:44:48.699Z",
+      "matchedKeywords": [
+        "인공지능"
+      ]
+    },
+    "75f98651408de886": {
+      "url": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=483760",
+      "title": "\"AI·로봇 시대, 대한민국 로봇산업 경쟁력 강화 방안 모색\"",
+      "description": "인공지능(AI)이 로봇의 판단과 행동까지 맡는 '피지컬 AI' 시대가 다가오면서 국 국내 로봇산업의 경쟁력을 높이기 위한 정책 논의하는 자리가 국회에 마련됐다. 인공지능(AI)시대에 대비해 기술 개발뿐 아니라 규제와 인력...",
+      "pubDate": "Fri, 04 Sep 2026 08:42:00 +0900",
+      "fetchedAt": "2026-09-03T23:44:48.699Z",
+      "matchedKeywords": [
+        "인공지능"
+      ]
+    },
+    "16b7864da247f8af": {
+      "url": "https://www.thebell.co.kr/free/content/ArticleView.asp?key=202609030627277460102152",
+      "title": "[더벨][Company Watch] 브이원텍, 디스플레이 매출 회복…하반기 흑자 전...",
+      "description": "신규 검사장비 개발과 산업용 인공지능(AI) 플랫폼 고도화에 비용이 투입되면서 영업적자는 이어졌지만, 2분기에는 손실폭을 줄였다. 3일 금융감독원 전자공시시스템(DART)에 따르면 브이원텍의 올해 상반기 연결...",
+      "pubDate": "Fri, 04 Sep 2026 08:42:00 +0900",
+      "fetchedAt": "2026-09-03T23:44:48.699Z",
+      "matchedKeywords": [
+        "인공지능"
+      ]
+    },
+    "c2ab3a4fd3d1ebc2": {
+      "url": "https://n.news.naver.com/mnews/article/079/0004185787?sid=101",
+      "title": "'국제가전박람회 IFA'에 '방탈출' 등장…보법 남다른 삼성",
+      "description": "삼성전자가 독일 베를린에서 열리는 유럽 최대 가전 전시회 'IFA 2026'에서 글로벌 인플루언서와 콘텐츠 크리에이터를 위한 전용 공간을 마련하고, 삼성의 인공지능(AI) 생태계를 체험할 수 있는 프로그램을...",
+      "pubDate": "Fri, 04 Sep 2026 08:42:00 +0900",
+      "fetchedAt": "2026-09-03T23:44:48.699Z",
+      "matchedKeywords": [
+        "인공지능"
+      ]
+    },
+    "1ac89b68439b9179": {
+      "url": "https://www.newspim.com/news/view/20260904000071",
+      "title": "\"오만, 이란의 '호르무즈 해협 통행료 징수' 제안 거절\"",
+      "description": "이란과 오만 영토 사이의 호르무즈 해협 인공지능(AI) 생성 이미지. 이는 지난주 이란 혁명수비대(IRGC)가 \"양국 간 수익 분배 합의가 완료됐다\"고 발표한 내용을 정면으로 뒤집는 결과다. 미 정부 관계자 역시 지난주...",
+      "pubDate": "Fri, 04 Sep 2026 08:41:00 +0900",
+      "fetchedAt": "2026-09-03T23:44:48.699Z",
+      "matchedKeywords": [
+        "인공지능"
+      ]
+    },
+    "aa8c3c9d80cfce28": {
+      "url": "https://n.news.naver.com/mnews/article/018/0006363518?sid=101",
+      "title": "한화자산운용, ‘다이내믹AI병목해소테마 EMP 목표전환형 펀드’ 모집",
+      "description": "한화다이내믹 AI병목해소테마 EMP 목표전환형 펀드는 AI(인공지능) 생태계가 빠르게 성장함에 따라 나타나는 병목현상을 해소할 수 있는 주요 테마 ETF와 단기채 ETF에 각각 약 50% 비중으로 투자한다. 목표 전환...",
+      "pubDate": "Fri, 04 Sep 2026 08:40:00 +0900",
+      "fetchedAt": "2026-09-03T23:44:48.699Z",
+      "matchedKeywords": [
+        "인공지능"
+      ]
+    },
+    "58a4829b456465da": {
+      "url": "https://www.digitaltoday.co.kr/news/articleView.html?idxno=698144",
+      "title": "오픈AI, 범용인공지능 시대 시작 선언…\"AGI 시대에 오신 것을 환영합니...",
+      "description": "[사진: 오픈AI] 오픈AI가 새로운 인공지능(AI) 모델 'GPT-6 아스트라'를 공개하면서 AI 업계의 핵심 목표로 꼽혀온 범용인공지능(AGI) 시대가 시작됐다는 입장을 내놨다. 3일(이하 현지시간) 비즈니스인사이더 등...",
+      "pubDate": "Fri, 04 Sep 2026 08:40:00 +0900",
+      "fetchedAt": "2026-09-03T23:44:48.699Z",
+      "matchedKeywords": [
+        "인공지능"
+      ]
+    },
+    "0a351093faf54849": {
+      "url": "https://n.news.naver.com/mnews/article/277/0005811816?sid=103",
+      "title": "한국앤컴퍼니그룹, '어텐션 2026'서 기조연설…\"AI로 기업 운영 방식 바...",
+      "description": "한국앤컴퍼니그룹이 3일 서울 강남구 웨스틴 서울 파르나스 하모니 볼룸에서 열린 산업 AI 컨퍼런스 '어텐션 2026(ATTENTION 2026)'의 그랜드 키노트 세션에서 인공지능(AI)을 기반으로 기업 운영 방식을 혁신한...",
+      "pubDate": "Fri, 04 Sep 2026 08:40:00 +0900",
+      "fetchedAt": "2026-09-03T23:44:48.699Z",
+      "matchedKeywords": [
+        "인공지능"
+      ]
+    },
+    "d6231f7874011b3e": {
+      "url": "https://www.newsfreezone.co.kr/news/articleView.html?idxno=707484",
+      "title": "엔비디아, AI를 클라우드서 PC로··· 'IFA 2026'서 '로컬 AI' 생태계 공...",
+      "description": "엔비디아가 인공지능(AI) 모델과 에이전트를 개인용 PC에서 직접 구동하는 '로컬 AI' 생태계 확대에... 엔비디아는 독일 베를린에서 열리는 'IFA 2026'에서 로컬 AI의 접근성과 성능을 높이기 위한 신기술과 파트너십을...",
+      "pubDate": "Fri, 04 Sep 2026 08:40:00 +0900",
+      "fetchedAt": "2026-09-03T23:44:49.147Z",
+      "matchedKeywords": [
+        "인공지능",
+        "엔비디아"
+      ]
+    },
+    "dd2a724bc5c9236b": {
+      "url": "http://www.srtimes.kr/news/articleView.html?idxno=211599",
+      "title": "중기부, 중소기업에 AI 인재 수혈…1600양성·인턴십 1년",
+      "description": "4대 과기원서 '제조AI 펠로' 500명 교육…중소기업 취업 연계 AI 계약학과 2030년 30곳으로…재직자 1만명 현장교육  정부가 중소 제조기업의 인공지능(AI) 전환을 이끌 실무인력 양성을 대폭 확대한다. 양성 인원은 올해...",
+      "pubDate": "Fri, 04 Sep 2026 08:40:00 +0900",
+      "fetchedAt": "2026-09-03T23:44:48.699Z",
+      "matchedKeywords": [
+        "인공지능"
+      ]
+    },
+    "c1a50f854b6304d0": {
+      "url": "https://daily.hankooki.com/news/articleView.html?idxno=1402664",
+      "title": "SK텔레콤, '리파인 데이' 통해 자원순환 캠페인 시행",
+      "description": "엄종환 SKT 지속가능경영실장은 \"서랍 속에 잠든 IT 기기도 안전한 과정을 거치면 미래세대의 성장을 위한 기기로 다시 태어날 수 있다\"며, \"AX(인공지능 전환)와 ICT(정보통신기술) 산업 성장 흐름에 발맞춰 통신 인프라...",
+      "pubDate": "Fri, 04 Sep 2026 08:40:00 +0900",
+      "fetchedAt": "2026-09-03T23:44:48.699Z",
+      "matchedKeywords": [
+        "인공지능"
+      ]
+    },
+    "c4b0c3c75abda0a6": {
+      "url": "https://www.maxmovie.com/news/articleView.html?idxno=501687",
+      "title": "서울우유, 4대 생성형 AI가 꼽은 '우유 브랜드 1위' 차지",
+      "description": "서울우유협동조합이 국내 19개 주요 우유 브랜드 가운데 인공지능(AI)이 선택한 최고의 브랜드 1위에 선정됐다고 4일 밝혔다. AI 브랜드 분석 전문기업 에이아이빅스랩(AIBIX lab)이 지난 7월 20일부터 8월 4일까지 4대...",
+      "pubDate": "Fri, 04 Sep 2026 08:38:00 +0900",
+      "fetchedAt": "2026-09-03T23:44:48.699Z",
+      "matchedKeywords": [
+        "인공지능"
+      ]
+    },
+    "8a94a91db21b790b": {
+      "url": "https://n.news.naver.com/mnews/article/082/0001396873?sid=101",
+      "title": "GS리테일, 하반기 신입사원 채용…21일까지 원서 접수",
+      "description": "채용 절차는 서류전형, AI(인공지능) 역량 검사, 1차 실무진 면접, 2차 임원면접 순으로 진행된다. 다만 GS25와 GS더프레시는 1차 실무진 면접 이후 4주간 채용 연계형 인턴십을 운영한다. GS샵은 별도의 인턴십 없이...",
+      "pubDate": "Fri, 04 Sep 2026 08:38:00 +0900",
+      "fetchedAt": "2026-09-03T23:44:48.699Z",
+      "matchedKeywords": [
+        "인공지능"
+      ]
+    },
+    "ab65f8bca122234f": {
+      "url": "https://n.news.naver.com/mnews/article/092/0002436196?sid=103",
+      "title": "구글 출신이 세운 '어플라이드 인튜이션'…사우디에 로보트럭 수천대 도...",
+      "description": "구글 출신 공동 창업자가 세운 피지컬 AI 기업 어플라이드 인튜이션이 사우디아라비아 국부펀드(PIF) 산하 인공지능(AI) 기업 휴메인과 손잡고 자율주행 트럭 기반 물류망 구축에 나선다. 어플라이드 인튜이션과...",
+      "pubDate": "Fri, 04 Sep 2026 08:38:00 +0900",
+      "fetchedAt": "2026-09-03T23:44:48.699Z",
+      "matchedKeywords": [
+        "인공지능"
+      ]
+    },
+    "623fd2bff9ccce2d": {
+      "url": "https://www.newsworker.co.kr/news/articleView.html?idxno=502523",
+      "title": "정진욱 의원, '선제적 인력망'... 서남권 반도체 육성 간담회",
+      "description": "삼성전자와 SK하이닉스, 앰코테크놀로지코리아 등 주요 반도체 기업들의 대규모 투자 흐름에 발맞춰 서남권 첨단 산업 현장에 직결되는 실무형 기술 인재를 공급하기 위한 민·관·학 협력망이 본격 가동된다....",
+      "pubDate": "Fri, 04 Sep 2026 08:38:00 +0900",
+      "fetchedAt": "2026-09-03T23:44:48.918Z",
+      "matchedKeywords": [
+        "인공지능",
+        "삼성전자"
+      ]
+    },
+    "946b923475f36864": {
+      "url": "http://www.srtimes.kr/news/articleView.html?idxno=211561",
+      "title": "삼바로직스 노사, 사후조정 D-4…노조 요구 받아 들여질까",
+      "description": "노조의 주장대로 라면 지난 5월 타결된 삼성전자의 임금인상률인 6.2% 넘게 된다는 점도 허들이다. 또다른 업계 관계자는 \"삼성바이오 노조의 요구인 6.5% 인상안은 삼성전자 노사가 합의한 평균 임금 인상률인 6.2%를...",
+      "pubDate": "Fri, 04 Sep 2026 08:40:00 +0900",
+      "fetchedAt": "2026-09-03T23:44:48.918Z",
+      "matchedKeywords": [
+        "삼성전자"
+      ]
+    },
+    "5f39274e238c088e": {
+      "url": "https://www.kyeongin.com/article/1770235",
+      "title": "[부음] 차정순씨 별세, 이태우(전 삼선전자 홍보부장) 모친상",
+      "description": "▲차정순씨 별세, 이태우(전 삼성전자 홍보부장)씨 모친상=4일. 빈소: 동수원병원장례식장 특실(수원시 팔달구 권광로367번길 77). 발인: 6일 오전 7시. (031)213-1640",
+      "pubDate": "Fri, 04 Sep 2026 08:40:00 +0900",
+      "fetchedAt": "2026-09-03T23:44:48.918Z",
+      "matchedKeywords": [
+        "삼성전자"
+      ]
+    },
+    "96cbb50ae26d5344": {
+      "url": "http://www.wsobi.com/news/articleView.html?idxno=317551",
+      "title": "롯데하이마트·마리오아울렛 '갤럭시 S26 FE' 선보여...가을맞이 페스티...",
+      "description": "롯데하이마트가 삼성전자의 스마트폰 신제품 '갤럭시 S26 FE'를 선보이며 마리오아울렛은 가을맞이 페스티벌을 진행한다. 롯데하이마트가 전국 오프라인 매장과 온라인쇼핑몰에서 삼성전자의 스마트폰 신제품...",
+      "pubDate": "Fri, 04 Sep 2026 08:38:00 +0900",
+      "fetchedAt": "2026-09-03T23:44:48.918Z",
+      "matchedKeywords": [
+        "삼성전자"
+      ]
+    },
+    "8084ec0b5f4fea7a": {
+      "url": "https://www.newspim.com/news/view/20260904000065",
+      "title": "[AI MY 증시전망] 코스피, 美 금리 하락·증시 강세에 상승 출발 전망",
+      "description": "엔비디아(1.80%), 마이크로소프트(2.68%), 메타(3.01%), 테슬라(5.42%) 등 대형 기술주가 강세를 보인 반면... 간밤 엔비디아가 1.80% 상승했고 필라델피아 반도체지수도 0.11% 올랐다. 브로드컴은 2.74% 하락했지만 회계연도...",
+      "pubDate": "Fri, 04 Sep 2026 08:38:00 +0900",
+      "fetchedAt": "2026-09-03T23:44:49.147Z",
+      "matchedKeywords": [
+        "삼성전자",
+        "엔비디아"
+      ]
+    },
+    "cbaaba1c20f518ec": {
+      "url": "https://www.tfmedia.co.kr/news/article.html?no=206973",
+      "title": "[이슈체크] 7월 경상수지 420.8억달러 흑자…반도체 호황에 월간 역대 2...",
+      "description": "차익거래 유인이 줄면서 6월(52억9천만달러)보다 증가 폭이 줄었다. 지난 7월 30일 인천국제공항 대한항공 화물터미널에서 관계자들이 삼성전자와 SK하이닉스의 반도체를 항공기에 탑재하는 장면. [사진공동취재]",
+      "pubDate": "Fri, 04 Sep 2026 08:38:00 +0900",
+      "fetchedAt": "2026-09-03T23:44:48.918Z",
+      "matchedKeywords": [
+        "삼성전자"
+      ]
+    },
+    "2352689e18ace967": {
+      "url": "https://www.m-i.kr/news/articleView.html?idxno=1410005",
+      "title": "[르포]렌즈 몰라도 '인생샷' 찰칵…갤Z폴드8 울트라 카메라 써보니",
+      "description": "고병권 삼성전자 MX사업부 비주얼솔루션팀 프로가 지난 3일 서울 종로구 안국역 인근 카페에서 열린 '갤럭시 Z 폴드8 울트라 카메라 브리핑'에서 카메라 기술에 대해 설명하고 있다. 사진=안종열 기자 매일일보 = 안종열...",
+      "pubDate": "Fri, 04 Sep 2026 08:38:00 +0900",
+      "fetchedAt": "2026-09-03T23:44:48.918Z",
+      "matchedKeywords": [
+        "삼성전자"
+      ]
+    },
+    "0ffe632e02ea9967": {
+      "url": "https://n.news.naver.com/mnews/article/003/0014168640?sid=101",
+      "title": "삼성전자, IFA 2026 참가",
+      "description": "삼성전자가 4일부터 8일까지 독일 베를린에서 열리는 유럽 최대 가전 전시회 'IFA 2026'에서 글로벌 인플루언서와 콘텐츠 크리에이터를 위한 전용 공간인 '삼성 크리에이터 허브(Samsung Creator Hub)'를...",
+      "pubDate": "Fri, 04 Sep 2026 08:36:00 +0900",
+      "fetchedAt": "2026-09-03T23:44:48.918Z",
+      "matchedKeywords": [
+        "삼성전자"
+      ]
+    },
+    "642fc2c1a22231b0": {
+      "url": "https://www.getnews.co.kr/news/articleView.html?idxno=879801",
+      "title": "씨티, 환율부담 반영해 '삼전닉스' 목표주가 하향 조정",
+      "description": "씨티그룹이 환율 부담을 반영해 SK하이닉스와 삼성전자의 실적 전망치와 목표주가를 하향 조정했다. 그러나 메모리 시장의 상승 국면이 이어질 것으로 전망하며 두 종목에 대한 투자 의견은 모두 '매수'를...",
+      "pubDate": "Fri, 04 Sep 2026 08:36:00 +0900",
+      "fetchedAt": "2026-09-03T23:44:48.918Z",
+      "matchedKeywords": [
+        "삼성전자"
+      ]
+    },
+    "487e52f0abba09cb": {
+      "url": "http://www.4th.kr/news/articleView.html?idxno=2117457",
+      "title": "[IFA2026] 삼성전자, AI 체험형 전시 확대",
+      "description": "포쓰저널 송신용 기자 삼성전자가 IFA 2026이 열리는 '메세 베를린(Messe Berlin)'의   IFA 팔레 전시 공간에 마련한 '크리에이터 허브./삼성전자 삼성전자가 유럽 최대 가전 전시회 IFA 2026에서 글로벌 인플루언서와...",
+      "pubDate": "Fri, 04 Sep 2026 08:34:00 +0900",
+      "fetchedAt": "2026-09-03T23:44:48.918Z",
+      "matchedKeywords": [
+        "삼성전자"
+      ]
+    },
+    "50289bae9c325520": {
+      "url": "https://www.viva100.com/article/20260904500040",
+      "title": "“갤럭시 S26 FE 사고 월 7900원 요금제”⋯ 롯데하이마트, 구매 혜택 강...",
+      "description": "롯데하이마트가 삼성전자의 신제품 ‘갤럭시 S26 FE’ 출시에 맞춰 자체 요금제와 중고폰 보상 등 구매 혜택을 강화한다. 스마트폰 판매에 그치지 않고 요금제와 보상·케어까지 서비스 영역을 넓혀 모바일 고객...",
+      "pubDate": "Fri, 04 Sep 2026 08:34:00 +0900",
+      "fetchedAt": "2026-09-03T23:44:48.918Z",
+      "matchedKeywords": [
+        "삼성전자"
+      ]
+    },
+    "11ef450f8e083f60": {
+      "url": "https://www.kizmom.com/news/articleView.html?idxno=112522",
+      "title": "삼성전자, IFA 2026서 'AI 방탈출' 선보인다…갤럭시 Z 폴드8이 게임 마스...",
+      "description": "삼성전자가 유럽 최대 가전 전시회 'IFA 2026'에서 글로벌 인플루언서와 콘텐츠 크리에이터를 위한 전용 공간을 마련하고 삼성의 연결형 인공지능(AI) 생태계를 선보인다. 삼성전자는 4일부터 8일까지 독일...",
+      "pubDate": "Fri, 04 Sep 2026 08:31:00 +0900",
+      "fetchedAt": "2026-09-03T23:44:48.918Z",
+      "matchedKeywords": [
+        "삼성전자"
+      ]
+    },
+    "814171b5bd452929": {
+      "url": "https://n.news.naver.com/mnews/article/374/0000531146?sid=101",
+      "title": "[어제장 오늘장] 코스피 30분 급락 후 급반등…커지는 변동성, 오늘은?",
+      "description": "삼성전자, SK하이닉스 약세였습니다. 반면 LG에너지솔루션 5% 넘게 뛰었고, KB금융과 삼성생명이 각각 5%,3% 강세를 보이는 등 금융 보험주가 견조한 흐름 나타냈습니다. 코스닥쪽에서는 10위권 내에서 딱 두 종목만...",
+      "pubDate": "Fri, 04 Sep 2026 08:31:00 +0900",
+      "fetchedAt": "2026-09-03T23:44:48.918Z",
+      "matchedKeywords": [
+        "삼성전자"
+      ]
+    },
+    "3f3e4827467292c8": {
+      "url": "https://n.news.naver.com/mnews/article/016/0002692717?sid=101",
+      "title": "삼성전자, ‘삼성 크리에이터 허브’서 AI 생태계 선보인다 [IFA 2026]",
+      "description": "삼성전자가 유럽 최대 가전 전시회 ‘IFA 2026’에서 글로벌 인플루언서와 콘텐츠 크리에이터를 위한 전용 공간인 ‘삼성 크리에이터 허브’를 마련한다고 4일 밝혔다. 삼성전자는 IFA 크리에이터 허브 메인 스폰서로...",
+      "pubDate": "Fri, 04 Sep 2026 08:30:00 +0900",
+      "fetchedAt": "2026-09-03T23:44:48.918Z",
+      "matchedKeywords": [
+        "삼성전자"
+      ]
+    },
+    "c0afced6e1f8d90e": {
+      "url": "https://www.socialvalue.kr/news/view/1065568152927664",
+      "title": "삼성전자, 독일 IFA서 인플루언서 사로잡는다… '삼성 크리에이터 허브...",
+      "description": "▲ IFA 팔레에 마련된 삼성전자 크리에이터 허브 전시 /사진=삼성전자 제공 삼성전자가 독일 베를린에서 열리는 유럽 최대의 가전 전시회 'IFA 2026'에서 인플루언서와 콘텐츠 크리에이터를 위한 전용공간을...",
+      "pubDate": "Fri, 04 Sep 2026 08:30:00 +0900",
+      "fetchedAt": "2026-09-03T23:44:48.918Z",
+      "matchedKeywords": [
+        "삼성전자"
+      ]
+    },
+    "155dbcbc68a1f031": {
+      "url": "http://www.econonews.co.kr/news/articleView.html?idxno=443859",
+      "title": "삼성전자, IFA 2026서 '크리에이터 허브' 운영",
+      "description": "삼성전자가 크리에이터 허브를 IFA 2026이 열리는 '메세 베를린(Messe Berlin)'의 'IFA 팔레(IFA Palais)' 전시 공간에 마련했다. (사진=삼성전자)  삼성전자는 4일부터 8일까지 독일 베를린에서 열리는 'IFA 2026'에서 글로벌...",
+      "pubDate": "Fri, 04 Sep 2026 08:30:00 +0900",
+      "fetchedAt": "2026-09-03T23:44:48.918Z",
+      "matchedKeywords": [
+        "삼성전자"
+      ]
+    },
+    "af84a50db45783ce": {
+      "url": "https://news.einfomax.co.kr/news/articleView.html?idxno=4433407",
+      "title": "\"ETF 국감 칼끝 어디까지\"…한투·삼성 실적에 찍힌 'DMA 특수'",
+      "description": "단일종목 레버리지 ETF (PG)[김선영 제작] 일러스트 삼성전자와 SK하이닉스 단일종목 레버리지 상장지수펀드(ETF)를 둘러싼 논란이 내달 국정감사를 앞두고 다시 확산하는 가운데 상품 출시 이후 거래 폭증의 수혜가...",
+      "pubDate": "Fri, 04 Sep 2026 08:26:00 +0900",
+      "fetchedAt": "2026-09-03T23:44:48.918Z",
+      "matchedKeywords": [
+        "삼성전자"
+      ]
+    },
+    "2d1137fefefadb1f": {
+      "url": "https://www.ajunews.com/view/20260904082230474",
+      "title": "삼성, IFA서 'AI 방탈출' 띄운다…크리에이터로 Z세대 공략",
+      "description": "메세 베를린에 전용 허브 마련…체험·스튜디오·라운지 결합 폴드8·AI 세탁기·TV 하나로 연결…스펙 대신 'AI 경험' 승부 아주경제=조성준 기자 critic@ajunews.com 삼성전자가 크리에이터 허브를 IFA 2026이 열리는 '메세...",
+      "pubDate": "Fri, 04 Sep 2026 08:26:00 +0900",
+      "fetchedAt": "2026-09-03T23:44:48.918Z",
+      "matchedKeywords": [
+        "삼성전자"
+      ]
+    },
+    "b90b6b9e938f27cd": {
+      "url": "https://dealsite.co.kr/articles/168288",
+      "title": "[ETF 리그테이블] [2026년 8월] 78조 사라졌다가 15조 돌아왔다…ETF 100조...",
+      "description": "삼성전자·SK하이닉스를 기초자산으로 하는 단일종목 레버리지·인버스2X ETF 16종의 8월 거래대금은 17조5936억원, 일평균으로는 8797억원에 그쳤다. 지난 5월 27일 동시 상장 직후 한 달간 일평균 10조원을...",
+      "pubDate": "Fri, 04 Sep 2026 08:26:00 +0900",
+      "fetchedAt": "2026-09-03T23:44:48.918Z",
+      "matchedKeywords": [
+        "삼성전자"
+      ]
+    },
+    "36440ba04cd9522c": {
+      "url": "https://www.asiaa.co.kr/news/articleView.html?idxno=261135",
+      "title": "삼성전자, IFA 2026서 '크리에이터 허브' 운영...AI 생태계 선봬",
+      "description": "삼성전자는 독일 베를린에서 개막한 유럽 최대 가전 전시회 'IFA 2026'에서 글로벌 인플루언서와 콘텐츠 크리에이터를 위한 전용 공간 '삼성 크리에이터 허브'를 열고 자사 인공지능(AI) 생태계 알리기에 나섰다고 4일...",
+      "pubDate": "Fri, 04 Sep 2026 08:26:00 +0900",
+      "fetchedAt": "2026-09-03T23:44:48.918Z",
+      "matchedKeywords": [
+        "삼성전자"
+      ]
+    },
+    "ad46c121e24ba22d": {
+      "url": "https://n.news.naver.com/mnews/article/018/0006363520?sid=105",
+      "title": "엔비디아, ‘PC 재발명’ 차세대 AI PC ‘RTX 스파크’ 10월 정식 출시",
+      "description": "젠슨 황 엔비디아 최고경영자(CEO). (사진=방인권 기자) 엔비디아(NVIDIA)가 마이크로소프트(MS)와 손잡고 추진해 온 ‘PC의 재발명’ 프로젝트가 오는 10월 결실을 맺는다. 지난 6월 GTC 타이베이에서 차세대 AI PC...",
+      "pubDate": "Fri, 04 Sep 2026 08:42:00 +0900",
+      "fetchedAt": "2026-09-03T23:44:49.147Z",
+      "matchedKeywords": [
+        "엔비디아"
+      ]
+    },
+    "4441dfccbff9d2cc": {
+      "url": "https://www.newspim.com/news/view/20260904000070",
+      "title": "[모닝 리포트] \"금리 진정에 코스피 상승 출발 전망\"",
+      "description": "엔비디아는 1.8%, 마이크로소프트는 2.9%, 테슬라는 5.42% 올랐고 브로드컴은 호실적에도 2.74% 하락했다. 월러 이사는 최근 디스인플레이션 징후가 일부 나타났다면서 이 같은 흐름이 향후 2주간 이어질 경우 9월 기준금리...",
+      "pubDate": "Fri, 04 Sep 2026 08:41:00 +0900",
+      "fetchedAt": "2026-09-03T23:44:49.147Z",
+      "matchedKeywords": [
+        "엔비디아"
+      ]
+    },
+    "7846d4ced85b8237": {
+      "url": "https://www.koreareport.co.kr/news/articleView.html?idxno=52618",
+      "title": "금리 걱정 덜어 뉴욕증시 상승…엔비디아, SW 상승 주도",
+      "description": "엔비디아는 허깅페이스를 129억 달러에 인수한다는 소식에 1.8% 오르고 그 영향에 소프트웨어 종목이 상승했다. 허깅페이스는 세계 개발자들이 오픈 모델 등을 공유하는 AI 개발 플랫폼으로 엔비디아가 AI 가속기와...",
+      "pubDate": "Fri, 04 Sep 2026 08:40:00 +0900",
+      "fetchedAt": "2026-09-03T23:44:49.147Z",
+      "matchedKeywords": [
+        "엔비디아"
+      ]
+    },
+    "ccc82e3746d1e52e": {
+      "url": "https://n.news.naver.com/mnews/article/014/0005570976?sid=101",
+      "title": "\"현대오토에버, 소프트웨어 통합 사업자로 변화…과제는 수익성 개선\"",
+      "description": "이 연구원은 \"현대차그룹은 엔비디아 등 외부의 검증된 기술을 활용해 양산 시점을 앞당기는 동시에, 자체 기술을 병행 개발하는 방향으로 전환했다\"며 \"현대오토에버는 모든 기술을 독자 개발하기보다는 외부 OS·AI와...",
+      "pubDate": "Fri, 04 Sep 2026 08:37:00 +0900",
+      "fetchedAt": "2026-09-03T23:44:49.147Z",
+      "matchedKeywords": [
+        "엔비디아"
+      ]
+    },
+    "ff4a032c0a363b3a": {
+      "url": "https://www.etoday.co.kr/news/view/2621789",
+      "title": "엔비디아, 17.5조에 허깅페이스 품는다⋯AI 개발 생태계 확장 [마켓핫]",
+      "description": "이투데이=변효선 기자 | 엔비디아, 인공지능 생태계 장악력 확대 젠슨 황 승부수⋯개발자 1800만명 품다 엔비디아가 AI 모델 공유 플랫폼 기업 허깅페이스를 약 17조5000억원에 인수한다. 전 세계 AI 개발자들이 기술을...",
+      "pubDate": "Fri, 04 Sep 2026 08:36:00 +0900",
+      "fetchedAt": "2026-09-03T23:44:49.147Z",
+      "matchedKeywords": [
+        "엔비디아"
+      ]
+    },
+    "0c0b2fe49b34a481": {
+      "url": "https://www.m-i.kr/news/articleView.html?idxno=1409991",
+      "title": "월러 '금리 동결' 시사에 투심 회복... 나스닥 1.40%↑ [뉴욕증시]",
+      "description": "엔비디아는 인공지능(AI) 모델 공유 플랫폼 허깅페이스를 약 130억달러에 인수한다는 소식에 1.80% 상승했다. 반면 브로드컴은 AI 인프라에 대한 높은 시장 기대에 미치지 못한 4분기 매출 전망을 내놓으면서 2.74...",
+      "pubDate": "Fri, 04 Sep 2026 08:34:00 +0900",
+      "fetchedAt": "2026-09-03T23:44:49.147Z",
+      "matchedKeywords": [
+        "엔비디아"
+      ]
+    },
+    "fdf7fcb9f4e7f123": {
+      "url": "https://n.news.naver.com/mnews/article/374/0000531147?sid=101",
+      "title": "[서학개미 브리핑] 서학개미, 반도체 팔고 빅테크로…달라진 투자 전략",
+      "description": "SOXL은 약 5억달러를 매수하는 동안 11억달러 가까이 매도했고, 엔비디아 역시 매도 규모가 매수 규모를 크게 웃돌았습니다. 메모리 반도체 종목들, 마이크론 뿐만 아니라 샌디스크와 SK하이닉스 ADR 또한 뚜렷한...",
+      "pubDate": "Fri, 04 Sep 2026 08:33:00 +0900",
+      "fetchedAt": "2026-09-03T23:44:49.147Z",
+      "matchedKeywords": [
+        "엔비디아"
+      ]
+    },
+    "d12cc6f8fa1b0dc2": {
+      "url": "https://www.cstimes.com/news/articleView.html?idxno=719381",
+      "title": "엔비디아, AI 소프트웨어 플랫폼 허깅 페이스 인수",
+      "description": "컨슈머타임스=김지훈 기자 | 엔비디아가 인공지능(AI) 소프트웨어 플랫폼 허깅페이스(Hugging Face)를... 엔비디아는 이번 인수의 목표가 오픈소스 AI 모델 확산을 지원하는 데 있다고 설명했다. 더 많은 기업과...",
+      "pubDate": "Fri, 04 Sep 2026 08:30:00 +0900",
+      "fetchedAt": "2026-09-03T23:44:49.147Z",
+      "matchedKeywords": [
+        "엔비디아"
+      ]
+    },
+    "efe6ca8262598be3": {
+      "url": "https://www.newstopkorea.com/news/articleView.html?idxno=47462",
+      "title": "월러 '금리 동결' 시사에 안도…뉴욕증시, 3대 지수 1%대 상승",
+      "description": "종목별로는 엔비디아가 AI 개발자 플랫폼 허깅페이스를 129억달러에 인수한다고 밝힌 뒤 1.8% 올랐다. 마이크로소프트는 2.7%, 메타는 3.0% 상승했다. 스노우플레이크는 실적과 연간 매출 전망 호조에 16.6...",
+      "pubDate": "Fri, 04 Sep 2026 08:28:00 +0900",
+      "fetchedAt": "2026-09-03T23:44:49.147Z",
+      "matchedKeywords": [
+        "엔비디아"
+      ]
+    },
+    "74d53cc93d970210": {
+      "url": "https://www.sentv.co.kr/article/view/sentv202609040007",
+      "title": "뉴욕증시 3대 지수 일제히 1%대 상승…금리 인상 우려 완화",
+      "description": "비트코인은 5.5% 오르며 8만1000달러선을 넘어섰다. 국제유가는 중동 긴장이 이어지는 가운데 혼조 마감했다. 10월 인도분 미 서부 텍사스산 원유(WTI) 선물은 0.32% 오른 배럴당 91.30달러에 마감하며 4거래일 연속...",
+      "pubDate": "Fri, 04 Sep 2026 08:26:00 +0900",
+      "fetchedAt": "2026-09-03T23:44:49.372Z",
+      "matchedKeywords": [
+        "엔비디아",
+        "비트코인"
+      ]
+    },
+    "489a2ed3e4c863d9": {
+      "url": "http://www.choicenews.co.kr/news/articleView.html?idxno=170937",
+      "title": "뉴욕증시 다우지수 '급등'...빅테크 · 소프트웨어 · 은행주 '활짝'",
+      "description": "이날 마이크로소프트(MSFT, +2.68%) 엔비디아(+1.80%) 구글의 모기업 알파벳A(+1.59%) 아마존닷컴(+1.54%) 애플(+1.00%) 등 다우존스 지수 편입 5대 빅테크주도 일제히 뛰면서 다우존스 지수를 강하게 밀어 올렸다. 이날엔...",
+      "pubDate": "Fri, 04 Sep 2026 08:24:00 +0900",
+      "fetchedAt": "2026-09-03T23:44:49.147Z",
+      "matchedKeywords": [
+        "엔비디아"
+      ]
+    },
+    "d4e1c756ea00c098": {
+      "url": "https://www.the-today.com/news/articleView.html?idxno=89444",
+      "title": "[젠슨 황의 두 얼굴 3부 연재(1부)] 웨이퍼에 쓴 \"더 만들어주십시오\".....",
+      "description": "이제 AI 반도체 생태계의 절대 갑은 미국의 첨단 기술 기업인 엔비디아의 젠슨 황 최고경영자(CEO)다. 그가... 대중 스타인양 처신하는 그의 친화적 행보는 고성능 AI 메모리 공급망에서 한국 기업들을 엔비디아의 발전...",
+      "pubDate": "Fri, 04 Sep 2026 08:24:00 +0900",
+      "fetchedAt": "2026-09-03T23:44:49.147Z",
+      "matchedKeywords": [
+        "엔비디아"
+      ]
+    },
+    "f7d13c5e048c6744": {
+      "url": "https://n.news.naver.com/mnews/article/092/0002436192?sid=105",
+      "title": "엔비디아, 유휴 PC GPU로 AI 추론 분산하는 'PAIR' 공개",
+      "description": "엔비디아가 4일 가정이나 사무실 내 PC GPU 자원을 이용해 AI 추론을 분산처리하는 '퍼스널 AI 라우터(PAIR)' 기술을 공개했다. 엔비디아는 \"현재 미국 가정 중 절반 이상은 PC를 두 대 이상 이용하지만 상당한 연산...",
+      "pubDate": "Fri, 04 Sep 2026 08:22:00 +0900",
+      "fetchedAt": "2026-09-03T23:44:49.147Z",
+      "matchedKeywords": [
+        "엔비디아"
+      ]
+    },
+    "d4ded08f092a1cb3": {
+      "url": "https://www.aitimes.kr/news/articleView.html?idxno=41755",
+      "title": "SDT, Quantum Expo Korea 2026서 극저온 냉각·양자 제어·계측 장비 선보...",
+      "description": "양자 제어시스템과 그래픽처리장치(GPU)를 실시간으로 연동하기 위해 엔비디아(NVIDIA)의 엔브이큐링크(NVQLink)를 적용했다. 지난 3월 열린 엔비디아 개발자 행사 지티시(GTC)에서는 이 장비를 이용해 양자...",
+      "pubDate": "Fri, 04 Sep 2026 08:22:00 +0900",
+      "fetchedAt": "2026-09-03T23:44:49.147Z",
+      "matchedKeywords": [
+        "엔비디아"
+      ]
+    },
+    "3bf7dcd0854f93db": {
+      "url": "https://www.dailycar.co.kr/content/news.html?type=view&autoId=62446",
+      "title": "아마존, 엔비디아 GPU 200만개 더 산다..왜?",
+      "description": "아마존의 클라우드 사업부인 아마존웹서비스(AWS)가 엔비디아 인공지능(AI)용 그래픽처리장치(GPU) 200만개를 추가로 들여온다. 자체 AI 반도체를 개발하고 있는 AWS가 엔비디아 GPU 구매를 오히려 대폭 늘리면서...",
+      "pubDate": "Fri, 04 Sep 2026 08:22:00 +0900",
+      "fetchedAt": "2026-09-03T23:44:49.147Z",
+      "matchedKeywords": [
+        "엔비디아"
+      ]
+    },
+    "c073956618831443": {
+      "url": "https://n.news.naver.com/mnews/article/374/0000531144?sid=104",
+      "title": "[굿모닝 마켓] 9월 금리 인상 가능성 축소…빅테크 일제히 강세",
+      "description": "오늘 비트코인도 금리 인상 가능성이 크게 줄면서 사흘 만에 강한 반등에 나섰습니다. 오랜만에 8만 1천달러를 다시 돌파했는데요. 현재 업비트에서 원화로는 1억 1천 1백만원대에서 거래되고 있습니다. 이어서 오늘...",
+      "pubDate": "Fri, 04 Sep 2026 08:22:00 +0900",
+      "fetchedAt": "2026-09-03T23:44:49.372Z",
+      "matchedKeywords": [
+        "엔비디아",
+        "비트코인"
+      ]
+    },
+    "39ee4a9513b588f0": {
+      "url": "https://www.cstimes.com/news/articleView.html?idxno=719378",
+      "title": "뉴욕증시, 금리 인상 우려 완화에 일제히 상승",
+      "description": "하지만 월러 연준 이사의 비둘기파 발언에 따른 미국 10년물 금리 급등세 진정 속 엔비디아(1.8%), 테슬라(5.4%), MS(2.9%) 등 M7주를 중심으로 한 선순환매 장세가 전개되면서 상승했다. 한지영 키움증권 연구원은 \"최근...",
+      "pubDate": "Fri, 04 Sep 2026 08:20:00 +0900",
+      "fetchedAt": "2026-09-03T23:44:49.147Z",
+      "matchedKeywords": [
+        "엔비디아"
+      ]
+    },
+    "1e5d24422001b895": {
+      "url": "https://n.news.naver.com/mnews/article/014/0005570967?sid=105",
+      "title": "엔비디아, 17조원 들여 허깅페이스 인수...오픈소스AI 생태게 확장[글로...",
+      "description": "엔비디아가 글로벌 최대 규모 오픈소스 인공지능(AI) 모델 유통 플랫폼 허깅페이스를 129억3000만달러(약 17조원)에 인수하기로 확정했다. 오픈소스 AI 분야 사업 확장에 투자를 강화해 온 엔비디아가 허깅페이스를 직접...",
+      "pubDate": "Fri, 04 Sep 2026 08:19:00 +0900",
+      "fetchedAt": "2026-09-03T23:44:49.147Z",
+      "matchedKeywords": [
+        "엔비디아"
+      ]
+    },
+    "cfd569baa5e65b76": {
+      "url": "https://news.dealsitetv.com/articles/175608",
+      "title": "[오늘의 비트코인] 美 금리동결 기대감…8만1000달러 돌파",
+      "description": "미 가상자산 거래소 코인베이스에 따르면 4일 오전 8시30분 비트코인 1개당 가격은 24시간 전보다 5.19% 급등한 8만1197달러에 거래 중이다. 같은 시간 시가총액 2위 이더리움은 4.69% 상승한 2497달러, 리플(XRP)은 7.86...",
+      "pubDate": "Fri, 04 Sep 2026 08:36:00 +0900",
+      "fetchedAt": "2026-09-03T23:44:49.372Z",
+      "matchedKeywords": [
+        "비트코인"
+      ]
+    },
+    "063ae9a8f81665ba": {
+      "url": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=483755",
+      "title": "ETF 12일 연속 유입 탑 무너졌다… 4,800만 달러 썰물에 이더리움 충격",
+      "description": "가상자산 시장 내부적으로도 대장주인 비트코인의 보합세 속에서 이더리움만의 독자적인 상승 모멘텀을 찾기 어려운 실정이다. 전문가들은 이더리움이 현재 거대한 시험대에 올랐다고 입을 모았다. 단기적으로 2...",
+      "pubDate": "Fri, 04 Sep 2026 08:34:00 +0900",
+      "fetchedAt": "2026-09-03T23:44:49.372Z",
+      "matchedKeywords": [
+        "비트코인"
+      ]
+    },
+    "c25919be490d36ad": {
+      "url": "https://n.news.naver.com/mnews/article/003/0014168633?sid=101",
+      "title": "비트코인, 1억1000만원선 회복…美 금리 경계 완화·달러 약세에 반등",
+      "description": "비트코인이 4일 미국 국채금리 상승세 진정과 달러 약세에 힘입어 1억1000만원선을 회복했다. 다만 주요 알트코인은 약세를 보이며 엇갈린 흐름을 나타냈다. 비트코인은 이날 오전 8시10분 기준 가상자산 거래소...",
+      "pubDate": "Fri, 04 Sep 2026 08:31:00 +0900",
+      "fetchedAt": "2026-09-03T23:44:49.372Z",
+      "matchedKeywords": [
+        "비트코인"
+      ]
+    },
+    "7cf035aea9c552a8": {
+      "url": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=483751",
+      "title": "이더리움까지 미쳐 날뛰는 중… 비트코인 8만 달러 뚫자 터진 거대 세력...",
+      "description": "가상자산 대장주 비트코인(BTC)이 8만 달러 고지를 전격 돌파하면서 관련 주식 시장까지 강하게 휘청거렸다. 비트코인 보유량이 많은 마이크로스트래티지와 미국 최대 가상자산 거래소인 코인베이스의 주가가 폭발적으로...",
+      "pubDate": "Fri, 04 Sep 2026 08:30:00 +0900",
+      "fetchedAt": "2026-09-03T23:44:49.372Z",
+      "matchedKeywords": [
+        "비트코인"
+      ]
+    },
+    "7ee14b9380649159": {
+      "url": "https://www.decenter.kr/article/20087069?ref=naverdc",
+      "title": "비트코인 8만달러 재돌파…美금리 인상 우려 완화에 5%대 급등 [디센터...",
+      "description": "비트코인(BTC)이 8만 달러를 재돌파했다. 미국 연방준비제도(Fed·연준) 인사의 비둘기파적 발언으로 9월 기준금리 인상에 대한 경계감이 완화되면서 최근 급등했던 미 국채금리가 하락하고 위험자산 투자심리가...",
+      "pubDate": "Fri, 04 Sep 2026 08:30:00 +0900",
+      "fetchedAt": "2026-09-03T23:44:49.372Z",
+      "matchedKeywords": [
+        "비트코인"
+      ]
+    },
+    "bee2c9245a672dff": {
+      "url": "http://coinreaders.com/256492",
+      "title": "비트코인(BTC), 헤드앤숄더 '균열'...다음 방어선 7만 1,000달러",
+      "description": "비트코인(Bitcoin, BTC)이 헤드앤숄더 넥라인을 이탈했다. 추가 하락 시 7만 1,000달러가 다음 목표로 거론된다. 9월 3일(현지시간) 비인크립토에 따르면, 애널리스트 웰스매니저(Wealthmanager)는 비트코인이...",
+      "pubDate": "Fri, 04 Sep 2026 08:26:00 +0900",
+      "fetchedAt": "2026-09-03T23:44:49.372Z",
+      "matchedKeywords": [
+        "비트코인"
+      ]
+    },
+    "8053034fc452eb71": {
+      "url": "https://www.digitaltoday.co.kr/news/articleView.html?idxno=698133",
+      "title": "비트코인 영구선물 놓고 충돌…CFTC \"CME도 상장하면 돼\"",
+      "description": "분쟁은 CFTC가 지난 5월 29일 예측시장 업체 칼시(Kalshi)의 비트코인 영구선물 BTCPERP를 선물계약으로 승인하면서 시작됐다. 같은 날 CFTC 직원은 코인베이스가 취급하려는 유사 암호화폐 상품도 일정 조건에서 해외...",
+      "pubDate": "Fri, 04 Sep 2026 08:26:00 +0900",
+      "fetchedAt": "2026-09-03T23:44:49.372Z",
+      "matchedKeywords": [
+        "비트코인"
+      ]
+    },
+    "5a740aa459de51e9": {
+      "url": "https://n.news.naver.com/mnews/article/366/0001190311?sid=101",
+      "title": "美 기준금리 동결 암시에 가상자산 오름세… 비트코인 5%대 상승",
+      "description": "4일 오전 8시 11분 글로벌 가상자산 시황 사이트 코인마켓캡에 따르면 비트코인 가격은 24시간 전보다 5.09% 오른 8만1099달러에 거래되고 있다. 같은 기간 이더리움은 4.66% 상승한 2496.99달러를 기록하고 있다. XRP(리플)...",
+      "pubDate": "Fri, 04 Sep 2026 08:21:00 +0900",
+      "fetchedAt": "2026-09-03T23:44:49.372Z",
+      "matchedKeywords": [
+        "비트코인"
+      ]
+    },
+    "739ebbe44662fc7b": {
+      "url": "https://www.etoday.co.kr/news/view/2621777",
+      "title": "뉴욕금값 하룻새 3.6%↑⋯안전자산 무게중심 국채에서 金으로",
+      "description": "로이터통신은 최근 금과 비트코인이 동반 강세를 보이는 배경으로 미국의 재정적자, 국채 신뢰 저하 등 이른바 ‘달러 가치 희석(debasement)’ 우려가 있다고 짚었다. 이는 금값 상승을 단순한 지정학적 불안뿐 아니라...",
+      "pubDate": "Fri, 04 Sep 2026 08:18:00 +0900",
+      "fetchedAt": "2026-09-03T23:44:49.372Z",
+      "matchedKeywords": [
+        "비트코인"
+      ]
+    },
+    "731cb28722edeb6c": {
+      "url": "https://www.shinailbo.co.kr/news/articleView.html?idxno=5058435",
+      "title": "[08:10 가상자산] 월러, 금리 인상 신중론에…비트코인 1억1000만원대 회...",
+      "description": "크리스토퍼 월러 미국 연방준비제도(Fed·연준) 이사가 기준금리 인상에 신중한 견해를 내놓자 긴축 우려가 완화되며 비트코인 등 가상자산이 상승했다. 4일 업비트에서 오전 8시10분 기준 비트코인은 전일 종가...",
+      "pubDate": "Fri, 04 Sep 2026 08:18:00 +0900",
+      "fetchedAt": "2026-09-03T23:44:49.372Z",
+      "matchedKeywords": [
+        "비트코인"
+      ]
+    },
+    "9a634f9908fd0261": {
+      "url": "https://www.digitaltoday.co.kr/news/articleView.html?idxno=698122",
+      "title": "스탠다드차타드, UAE서 기관 대상 비트코인·이더리움 현물 거래 개시",
+      "description": "스탠다드차타드가 UAE에서 기관투자자 대상 비트코인과 이더리움의 현물 거래 서비스를 개시했다. [사진: 셔터스톡] 스탠다드차타드가 아랍에미리트(UAE)에서 기관투자자를 대상으로 비트코인과 이더리움 현물 거래...",
+      "pubDate": "Fri, 04 Sep 2026 08:18:00 +0900",
+      "fetchedAt": "2026-09-03T23:44:49.372Z",
+      "matchedKeywords": [
+        "비트코인"
+      ]
+    },
+    "b7d7c0fd77695027": {
+      "url": "https://n.news.naver.com/mnews/article/277/0005811800?sid=101",
+      "title": "[굿모닝 증시]\"美금리 우려 완화…한국증시 상승 출발 전망\"",
+      "description": "비트코인 8만달러 돌파 소식과 함께 암호화폐 거래 비중이 높은 로빈후드는 16.57% 급등했다. 시게이트 1.23%, AMD 0.20%, SK하이닉스ADR 1.05% 등은 떨어졌다. 이날 한국 증시는 상승 출발이 예상된다. 한지영 키움증권...",
+      "pubDate": "Fri, 04 Sep 2026 08:17:00 +0900",
+      "fetchedAt": "2026-09-03T23:44:49.372Z",
+      "matchedKeywords": [
+        "비트코인"
+      ]
+    },
+    "e376562f52030109": {
+      "url": "https://www.ajunews.com/view/20260904074031405",
+      "title": "[아주경제 코이너스 브리핑] 美 증시 강세·금리인상 우려 완화에…비트...",
+      "description": "아주경제=김윤섭 기자 angks678@ajunews.com 비트코인이 다시 8만달러선을 회복했다. 연일 시장의 발목을 잡았던 미국 국채금리가 크게 하락하고 미국 연방준비제도(Fed·연준)의 추가 기준금리 인상 우려가 완화되면서...",
+      "pubDate": "Fri, 04 Sep 2026 08:14:00 +0900",
+      "fetchedAt": "2026-09-03T23:44:49.372Z",
+      "matchedKeywords": [
+        "비트코인"
+      ]
+    },
+    "1b751f3663b419dc": {
+      "url": "https://www.mediafine.co.kr/news/articleView.html?idxno=88789",
+      "title": "뉴욕증시 일제히 1%대 상승, 연준 '비둘기 발언'에 금리인상 우려 완화",
+      "description": "위험자산 선호가 살아나면서 비트코인은 5.5% 상승해 8만1천달러선을 넘어섰다. 국제유가는 중동 지역의 긴장이 이어지는 가운데 엇갈린 흐름을 나타냈다. 10월 인도분 미국 서부텍사스산원유(WTI) 선물은 0.32% 오른...",
+      "pubDate": "Fri, 04 Sep 2026 08:14:00 +0900",
+      "fetchedAt": "2026-09-03T23:44:49.372Z",
+      "matchedKeywords": [
+        "비트코인"
+      ]
+    },
+    "308b9245897a1c7c": {
+      "url": "https://www.newsquest.co.kr/news/articleView.html?idxno=300261",
+      "title": "[굿모닝! 글로벌 뉴욕증시] Fed 이사의 비둘기적 발언과 국채금리 급등...",
+      "description": "국채금리 진정과 달러화 약세 훈풍 속에 대체 안전자산인 국제 금 선물 가격은 급등세를 보였고, 비트코인 가격 또한 상승세를 기록했다. 업종별로는 임의소비재, 금융, 산업, 기술, 부동산 업종 등이 강세를 보인...",
+      "pubDate": "Fri, 04 Sep 2026 08:12:00 +0900",
+      "fetchedAt": "2026-09-03T23:44:49.372Z",
+      "matchedKeywords": [
+        "비트코인"
+      ]
+    },
+    "b062bd9efc16dfd3": {
+      "url": "https://n.news.naver.com/mnews/article/018/0006363496?sid=101",
+      "title": "비트코인 8.1만달러 돌파…美 금리인상 경계 완화[코인 모닝콜]",
+      "description": "4일 디지털자산시장 데이터업체 코인마켓캡에 따르면 이날 오전 7시40분 현재 비트코인은 24시간 전보다 5.33% 오른 8만1238달러에 거래되고 있다. 시가총액 2위 이더리움도 4.74% 상승한 2495달러 안팎에서 등락하고...",
+      "pubDate": "Fri, 04 Sep 2026 08:09:00 +0900",
+      "fetchedAt": "2026-09-03T23:44:49.372Z",
+      "matchedKeywords": [
+        "비트코인"
+      ]
+    },
+    "29f4c4a2a26ca082": {
+      "url": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=483729",
+      "title": "선물 거래량 840억 달러 폭발… 비트코인 50주 이동평균선 회복하며 8만...",
+      "description": "비트코인 기념주화 이미지. 사진=로이터 연합뉴스 가상자산 대장주 비트코인(BTC)이 하루 만에 5% 이상 기습 폭등하며 주요 기술적 분기점인 50주 이동평균선(MA)을 전격 회복했다. 파생상품 시장에서 미결제 약정이...",
+      "pubDate": "Fri, 04 Sep 2026 08:08:00 +0900",
+      "fetchedAt": "2026-09-03T23:44:49.372Z",
+      "matchedKeywords": [
+        "비트코인"
+      ]
+    },
+    "deeced28df6e5115": {
+      "url": "https://n.news.naver.com/mnews/article/052/0002402529?sid=104",
+      "title": "뉴욕 증시, 금리 인상 우려 완화에 동반 상승 마감",
+      "description": "비트코인은 5.5% 오르면서 8만 천 달러 선을 넘어섰습니다. 종목별로는 AI 관련 초대형 기술주와 소프트웨어 업종들의 상승세가 두드러졌습니다. 소프트웨어 기업인 스노우 플레이크는 강력한 연간 매출 전망을...",
+      "pubDate": "Fri, 04 Sep 2026 08:08:00 +0900",
+      "fetchedAt": "2026-09-03T23:44:49.372Z",
+      "matchedKeywords": [
+        "비트코인"
+      ]
     }
   },
   "meta": {
-    "lastUpdateAt": "2026-09-02T23:47:19.431Z",
+    "lastUpdateAt": "2026-09-03T23:44:49.372Z",
     "lastUpdateStatus": "success",
     "lastUpdateErrors": []
   }
